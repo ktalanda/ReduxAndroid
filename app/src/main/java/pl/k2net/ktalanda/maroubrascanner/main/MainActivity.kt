@@ -1,11 +1,13 @@
-package pl.k2net.ktalanda.maroubrascanner
+package pl.k2net.ktalanda.maroubrascanner.main
 
 import android.app.Activity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import pl.k2net.ktalanda.maroubrascanner.R
 
-class MainActivity : Activity(), MainDispatcher.ViewInterface {
-    val dispatcher: MainDispatcher = MainDispatcher(this)
+class MainActivity : Activity(), MainPresenter.ViewInterface {
+
+    val presenter: MainPresenter = MainPresenter(this)
 
     override fun setTitle(title: String) {
         mainTitle.text = title
@@ -16,9 +18,7 @@ class MainActivity : Activity(), MainDispatcher.ViewInterface {
         setContentView(R.layout.activity_main)
 
         changeTitle.setOnClickListener {
-            run {
-                dispatcher.dispatch(MainChangeTitleAction("DISPATCHED"))
-            }
+            run { presenter.changeTitle() }
         }
     }
 }
