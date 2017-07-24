@@ -6,7 +6,7 @@ import pl.k2net.ktalanda.maroubrascanner.redux.Action
 import pl.k2net.ktalanda.maroubrascanner.redux.Reducer
 import pl.k2net.ktalanda.maroubrascanner.redux.ViewModel
 
-class MaroubraReducer : Reducer {
+object MaroubraReducer : Reducer {
     override fun reduce(viewModel: ViewModel, action: Action) : ViewModel {
         when (action) {
             is MainChangeTitleAction -> {

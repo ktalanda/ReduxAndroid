@@ -5,9 +5,8 @@ import pl.k2net.ktalanda.maroubrascanner.main.MainViewModel
 import pl.k2net.ktalanda.maroubrascanner.redux.Action
 import pl.k2net.ktalanda.maroubrascanner.redux.Store
 
-const val MAIN: String = "MAIN"
+object MaroubraStore : Store(reducer = MaroubraReducer) {
 
-class MaroubraStore : Store(reducer = MaroubraReducer()) {
     var mainViewModel: MainViewModel = MainViewModel("Hello")
 
     override fun dispatch(action: Action): Completable {

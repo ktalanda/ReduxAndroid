@@ -3,7 +3,7 @@ package pl.k2net.ktalanda.maroubrascanner.main
 import pl.k2net.ktalanda.maroubrascanner.MaroubraStore
 import pl.k2net.ktalanda.maroubrascanner.redux.Presenter
 
-class MainPresenter(val view: ViewInterface) : Presenter<MaroubraStore>(store = MaroubraStore()) {
+class MainPresenter(val view: ViewInterface) : Presenter<MaroubraStore>(store = MaroubraStore) {
 
     override fun update() {
         view.setTitle(store.mainViewModel.mainTitle)
@@ -11,7 +11,7 @@ class MainPresenter(val view: ViewInterface) : Presenter<MaroubraStore>(store = 
 
     fun changeTitle() {
         store.dispatch(MainChangeTitleAction("DISPATCHED"))
-                .subscribe({update()})
+                .subscribe({ update() })
     }
 
     interface ViewInterface {
