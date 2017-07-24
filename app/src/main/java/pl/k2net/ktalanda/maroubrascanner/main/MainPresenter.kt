@@ -1,18 +1,17 @@
 package pl.k2net.ktalanda.maroubrascanner.main
 
 import pl.k2net.ktalanda.maroubrascanner.MaroubraStore
+import pl.k2net.ktalanda.maroubrascanner.redux.Presenter
 
-class MainPresenter(val view: ViewInterface) {
+class MainPresenter(val view: ViewInterface) : Presenter<MaroubraStore>(store = MaroubraStore()) {
 
-    val store: MaroubraStore = MaroubraStore()
+    override fun update() {
+        view.setTitle(store.mainViewModel.mainTitle)
+    }
 
     fun changeTitle() {
         store.dispatch(MainChangeTitleAction("DISPATCHED"))
-        update()
-    }
-
-    fun update() {
-        view.setTitle(store.mainViewModel.mainTitle)
+                .subscribe({update()})
     }
 
     interface ViewInterface {
