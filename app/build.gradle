@@ -1,8 +1,15 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+String getFromLocalProperties(String key){
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    return properties.getProperty(key)?:null
+}
+
+def mswApiKey = System.getenv("MSW_API_KEY") == null ? getFromLocalProperties("MSW_API_KEY") :  System.getenv("MSW_API_KEY")
 
 android {
     compileSdkVersion 26
@@ -14,6 +21,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "MSW_API_KEY", mswApiKey
     }
     buildTypes {
         release {
@@ -27,6 +35,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    kapt 'com.google.dagger:dagger-compiler:2.10'
+    implementation 'com.google.dagger:dagger:2.10'
 
     androidTestImplementation ('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
