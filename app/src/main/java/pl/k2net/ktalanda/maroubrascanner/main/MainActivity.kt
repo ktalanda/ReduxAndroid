@@ -11,18 +11,18 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
 
     @Inject lateinit var presenter: MainPresenter
 
-    override fun setTitle(title: String) {
-        mainTitle.text = title
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         (application as App).component.inject(this)
-
         presenter.bind(this)
+
         changeTitle.setOnClickListener {
             run { presenter.changeTitle() }
         }
+    }
+
+    override fun setTitle(title: String) {
+        mainTitle.text = title
     }
 }

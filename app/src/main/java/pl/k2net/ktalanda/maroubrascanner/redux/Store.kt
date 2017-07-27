@@ -1,7 +1,12 @@
 package pl.k2net.ktalanda.maroubrascanner.redux
 
-import io.reactivex.Completable
+import io.reactivex.subjects.PublishSubject
 
 abstract class Store(val reducer: Reducer) {
-    abstract fun dispatch(action: Action): Completable
+    val subject: PublishSubject<String> = PublishSubject.create()
+    abstract fun reduce(action: Action)
+    fun dispatch(action: Action) {
+        reduce(action)
+        subject.onNext("update")
+    }
 }

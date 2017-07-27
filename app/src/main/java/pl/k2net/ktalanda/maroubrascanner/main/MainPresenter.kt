@@ -1,6 +1,5 @@
 package pl.k2net.ktalanda.maroubrascanner.main
 
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
@@ -18,17 +17,13 @@ class MainPresenter @Inject constructor() : Presenter<MaroubraStore, MainPresent
     }
 
     fun changeTitle() {
-        store.dispatch(MainChangeTitleAction("DISPATCHED"))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .andThen({ update() })
         maroubraData.getForecast()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
-                        onNext = { Log.e("KAMIL", it.toString()) },
-                        onError = { Log.e("KAMIL", it.toString()) },
-                        onComplete = { Log.e("KAMIL", "") }
+                        onNext = {
+                            store.dispatch(MainChangeTitleAction("" + it.timestamp))
+                        }
                 )
     }
 
