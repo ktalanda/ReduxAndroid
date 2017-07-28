@@ -3,7 +3,6 @@ package pl.k2net.ktalanda.maroubrascanner.redux
 import io.reactivex.disposables.Disposable
 
 abstract class Presenter<out S: Store, V: Any>(val store: S) {
-
     lateinit var view: V
     lateinit var disposable: Disposable
 

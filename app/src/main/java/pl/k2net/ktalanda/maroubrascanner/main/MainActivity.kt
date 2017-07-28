@@ -8,7 +8,6 @@ import pl.k2net.ktalanda.maroubrascanner.R
 import javax.inject.Inject
 
 class MainActivity : Activity(), MainPresenter.ViewInterface {
-
     @Inject lateinit var presenter: MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {

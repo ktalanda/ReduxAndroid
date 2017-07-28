@@ -9,11 +9,10 @@ import pl.k2net.ktalanda.maroubrascanner.redux.Presenter
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor() : Presenter<MaroubraStore, MainPresenter.ViewInterface>(store = MaroubraStore) {
-
     @Inject lateinit var maroubraData: MaroubraData
 
     override fun update() {
-        view.setTitle(store.mainViewModel.mainTitle)
+        view.setTitle((store.map[MainViewModel::class.toString()] as MainViewModel).mainTitle)
     }
 
     fun changeTitle() {
