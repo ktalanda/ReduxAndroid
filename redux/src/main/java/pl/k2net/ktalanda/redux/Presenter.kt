@@ -2,14 +2,14 @@ package pl.k2net.ktalanda.maroubrascanner.redux
 
 import io.reactivex.disposables.Disposable
 
-abstract class Presenter<out S: Store, V: Any>(val store: S) {
+abstract class Presenter<V: Any>(val store: Store) {
     lateinit var view: V
     lateinit var disposable: Disposable
 
     fun bind(view: V) {
         this.view = view
-        update()
         disposable = store.subject.subscribe { update() }
+        update()
     }
 
     fun unbind() {

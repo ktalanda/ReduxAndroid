@@ -2,13 +2,11 @@ package pl.k2net.ktalanda.maroubrascanner.redux
 
 import io.reactivex.subjects.PublishSubject
 
-abstract class Store(val reducer: Reducer) {
+class Store(val reducer: Reducer, var state: Map<String, ViewModel>) {
     val subject: PublishSubject<String> = PublishSubject.create()
 
-    lateinit var map: Map<String, ViewModel>
-
     fun reduce(action: Action) {
-        map = map.mapValues {
+        state = state.mapValues {
             if (action.type() == it.key) reducer.reduce(it.value, action)
             else it.value
         }
