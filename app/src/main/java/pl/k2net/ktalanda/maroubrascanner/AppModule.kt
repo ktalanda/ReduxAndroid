@@ -1,5 +1,8 @@
 package pl.k2net.ktalanda.maroubrascanner
 
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import dagger.Module
 import dagger.Provides
 import pl.k2net.ktalanda.maroubrascanner.main.MainViewModel
@@ -14,8 +17,20 @@ class AppModule(val app: App) {
         return Store(
                 MaroubraReducer,
                 hashMapOf(
-                        MainViewModel::class.toString() to MainViewModel("Hello")
+                        MainViewModel::class.toString() to MainViewModel()
                 )
         )
+    }
+
+    @Provides fun provideLineDataSet(): LineDataSet {
+        return LineDataSet(listOf(), "")
+    }
+
+    @Provides fun provideLineData(): LineData {
+        return LineData()
+    }
+
+    @Provides fun provideEntry(): Entry {
+        return Entry()
     }
 }

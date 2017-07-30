@@ -2,6 +2,7 @@ package pl.k2net.ktalanda.maroubrascanner.main
 
 import android.app.Activity
 import android.os.Bundle
+import com.github.mikephil.charting.data.LineData
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.k2net.ktalanda.maroubrascanner.App
 import pl.k2net.ktalanda.maroubrascanner.R
@@ -16,12 +17,22 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
         (application as App).component.inject(this)
         presenter.bind(this)
 
-        changeTitle.setOnClickListener {
-            run { presenter.changeTitle() }
-        }
+        swellChart.setDrawGridBackground(true)
+        swellChart.setDrawBorders(false)
+        swellChart.description.isEnabled = false
+        swellChart.axisLeft.setDrawGridLines(false)
+        swellChart.axisLeft.setDrawLabels(false)
+        swellChart.axisLeft.setDrawAxisLine(false)
+        swellChart.axisRight.setDrawGridLines(false)
+        swellChart.axisRight.setDrawLabels(false)
+        swellChart.axisRight.setDrawAxisLine(false)
+        swellChart.axisLeft.axisMinimum = 0.0f
+        swellChart.axisLeft.setDrawGridLines(false)
+
+        presenter.update()
     }
 
-    override fun setTitle(title: String) {
-        mainTitle.text = title
+    override fun updateDataSet(data: LineData) {
+        swellChart.data = data
     }
 }

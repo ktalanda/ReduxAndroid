@@ -15,7 +15,7 @@ ext {
     rxjava_version = '2.1.0'
     rxkotlin_version = '2.0.1'
     dagger_version = '2.10'
-    junit_version = '4.12'
+    mpandroidchart_version = 'v3.0.2'
 
     constraintlayout_version = '1.0.2'
 
@@ -55,6 +55,7 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger_version"
 
     implementation "com.android.support.constraint:constraint-layout:$constraintlayout_version"
+    compile "com.github.PhilJay:MPAndroidChart:$mpandroidchart_version"
 
     androidTestImplementation ("com.android.support.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
