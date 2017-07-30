@@ -23,7 +23,7 @@ class MaroubraDataImplementation : MaroubraData {
                 .build()
     }
 
-    override fun getForecast(): Observable<Forecast> {
-        return retrofit.create(Api::class.java).getMaroubraForecast().flatMapIterable { x -> x }
+    override fun getForecast(): Observable<List<Forecast>> {
+        return retrofit.create(Api::class.java).getMaroubraForecast()
     }
 }

@@ -212,7 +212,7 @@ class MockMaroubraData : MaroubraData {
 
     override fun init(key: String, isDebug: Boolean) {}
 
-    override fun getForecast(): Observable<Forecast> {
-        return Observable.fromIterable(forecast.toList())
+    override fun getForecast(): Observable<List<Forecast>> {
+        return Observable.just(forecast.toList())
     }
 }

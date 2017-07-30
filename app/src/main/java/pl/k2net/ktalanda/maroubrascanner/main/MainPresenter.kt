@@ -7,30 +7,38 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import pl.k2net.ktalanda.data.MaroubraData
+import pl.k2net.ktalanda.data.model.Forecast
 import pl.k2net.ktalanda.maroubrascanner.redux.Presenter
 import pl.k2net.ktalanda.maroubrascanner.redux.Store
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
-class MainPresenter @Inject constructor(store: Store) : Presenter<MainPresenter.ViewInterface>(store) {
-    @Inject lateinit var maroubraData: MaroubraData
-    @Inject lateinit var dataSetProvider: Provider<LineDataSet>
-    @Inject lateinit var dataLineProvider: Provider<LineData>
-    @Inject lateinit var entryProvider: Provider<Entry>
+@Singleton
+class MainPresenter @Inject constructor(
+        store: Store,
+        val maroubraData: MaroubraData,
+        val dataSetProvider: Provider<LineDataSet>,
+        val dataLineProvider: Provider<LineData>,
+        val entryProvider: Provider<Entry>
+) : Presenter<MainPresenter.ViewInterface>(store) {
 
+    init {
+        refreshData()
+    }
 
     override fun update() {
         view.updateDataSet(mapValuesToLineData(
                 (store.state[MainViewModel::class.toString()] as MainViewModel).swellList))
     }
 
-    fun changeTitle() {
+    fun refreshData() {
         maroubraData.getForecast()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                         onNext = {
-                            store.dispatch(MainChangeTitleAction("" + it.timestamp))
+                            store.dispatch(MainUpdateDataAction(it.map { mapForecastToSwellViewModel(it) }))
                         }
                 )
     }
@@ -48,6 +56,13 @@ class MainPresenter @Inject constructor(store: Store) : Presenter<MainPresenter.
         entry.x = swellViewModel.timestamp.toFloat()
         entry.y = swellViewModel.height.toFloat()
         return entry
+    }
+
+    fun mapForecastToSwellViewModel(forecast: Forecast): MainViewModel.SwellViewModel {
+        return MainViewModel.SwellViewModel(
+                forecast.timestamp,
+                forecast.swell.components["primary"]!!.height.toInt()
+        )
     }
 
     interface ViewInterface {

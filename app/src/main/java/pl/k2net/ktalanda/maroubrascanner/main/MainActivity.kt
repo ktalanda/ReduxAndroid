@@ -29,10 +29,15 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
         swellChart.axisLeft.axisMinimum = 0.0f
         swellChart.axisLeft.setDrawGridLines(false)
 
-        presenter.update()
+        refreshLayout.setOnRefreshListener {
+            presenter.refreshData()
+            refreshLayout.isRefreshing = false
+        }
     }
 
     override fun updateDataSet(data: LineData) {
         swellChart.data = data
+        swellChart.notifyDataSetChanged()
+        swellChart.invalidate()
     }
 }

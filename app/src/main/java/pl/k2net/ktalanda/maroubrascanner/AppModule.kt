@@ -23,7 +23,9 @@ class AppModule(val app: App) {
     }
 
     @Provides fun provideLineDataSet(): LineDataSet {
-        return LineDataSet(listOf(), "")
+        val lineDataSet = LineDataSet(listOf(), "")
+        lineDataSet.setDrawFilled(true)
+        return lineDataSet
     }
 
     @Provides fun provideLineData(): LineData {
