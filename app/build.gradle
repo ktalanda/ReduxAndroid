@@ -10,7 +10,7 @@ String getFromLocalProperties(String key){
     return properties.getProperty(key)?:null
 }
 
-def mswApiKey = System.getenv("MSW_API_KEY") == null ? getFromLocalProperties("MSW_API_KEY") :  System.getenv("MSW_API_KEY")
+def mswApiKey = System.getenv("MSW_API_KEY") == null ? getFromLocalProperties("MSW_API_KEY") : System.getenv("MSW_API_KEY")
 
 ext {
     support_version = '26.0.0'

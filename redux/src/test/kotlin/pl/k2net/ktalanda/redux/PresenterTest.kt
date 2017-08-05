@@ -6,7 +6,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
-class PresenterTest{
+class PresenterTest {
 
     val store: Store = Store(mock(), PublishSubject.create(), HashMap<String, ViewModel>())
     lateinit var presenter: PresenterTestImplementation

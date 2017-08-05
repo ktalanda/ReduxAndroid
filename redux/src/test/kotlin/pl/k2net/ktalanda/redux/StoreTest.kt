@@ -1,6 +1,10 @@
 package pl.k2net.ktalanda.redux
 
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.doReturn
+import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockito_kotlin.never
+import com.nhaarman.mockito_kotlin.verify
 import io.reactivex.subjects.PublishSubject
 import org.junit.Assert
 import org.junit.Before
@@ -24,14 +28,14 @@ class StoreTest {
     @Test
     @Throws(Exception::class)
     fun GivenActionWithExistingViewModelType_WhenReduce_ShouldReduceTheViewModel() {
-        val mainAction: Action = mock { on{ type()} doReturn "Main"}
+        val mainAction: Action = mock { on { type() } doReturn "Main" }
         store.reduce(mainAction)
         verify(reducerMock).reduce(viewModelMock, mainAction)
     }
 
     @Test
     fun GivenActionWithExistingViewModelType_WhenReduce_ShouldUpdateState() {
-        val mainAction: Action = mock { on{ type()} doReturn "Main"}
+        val mainAction: Action = mock { on { type() } doReturn "Main" }
         store.reduce(mainAction)
         Assert.assertNotEquals(store.state["Main"], state["Main"])
     }
@@ -39,14 +43,14 @@ class StoreTest {
     @Test
     @Throws(Exception::class)
     fun GivenActionWithNotExistingViewModelType_WhenReduce_ShouldNotReduceTheViewModel() {
-        val mainAction: Action = mock { on{ type()} doReturn "Second"}
+        val mainAction: Action = mock { on { type() } doReturn "Second" }
         store.reduce(mainAction)
         verify(reducerMock, never()).reduce(viewModelMock, mainAction)
     }
 
     @Test
     fun GivenActionWithNotExistingViewModelType_WhenReduce_ShouldNotUpdateState() {
-        val mainAction: Action = mock { on{ type()} doReturn "Second"}
+        val mainAction: Action = mock { on { type() } doReturn "Second" }
         store.reduce(mainAction)
         Assert.assertEquals(store.state["Main"], state["Main"])
     }

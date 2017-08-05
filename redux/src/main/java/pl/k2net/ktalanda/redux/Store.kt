@@ -20,6 +20,6 @@ class Store(val reducer: Reducer,
     }
 
     fun subscribe(doOnUpdate: () -> Unit) : Disposable {
-        return subject.subscribe({doOnUpdate()})
+        return subject.subscribe({ doOnUpdate() })
     }
 }
