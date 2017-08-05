@@ -2,7 +2,6 @@ package pl.k2net.ktalanda.maroubrascanner
 
 import dagger.Component
 import pl.k2net.ktalanda.maroubrascanner.main.MainActivity
-import pl.k2net.ktalanda.maroubrascanner.release.NetworkModule
 import javax.inject.Singleton
 
 @Singleton

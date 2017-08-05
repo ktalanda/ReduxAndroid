@@ -2,8 +2,9 @@ package pl.k2net.ktalanda.redux
 
 import io.reactivex.subjects.PublishSubject
 
-class Store(val reducer: Reducer, var state: Map<String, ViewModel>) {
-    val subject: PublishSubject<String> = PublishSubject.create()
+class Store(val reducer: Reducer,
+            val subject: PublishSubject<String>,
+            var state: Map<String, ViewModel>) {
 
     fun reduce(action: Action) {
         state = state.mapValues {
