@@ -1,5 +1,6 @@
 package pl.k2net.ktalanda.redux
 
+import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
 
 class Store(val reducer: Reducer,
@@ -16,5 +17,9 @@ class Store(val reducer: Reducer,
     fun dispatch(action: Action) {
         reduce(action)
         subject.onNext("update")
+    }
+
+    fun subscribe(doOnUpdate: () -> Unit) : Disposable {
+        return subject.subscribe({doOnUpdate()})
     }
 }

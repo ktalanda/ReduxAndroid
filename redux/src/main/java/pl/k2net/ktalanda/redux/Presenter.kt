@@ -8,7 +8,7 @@ abstract class Presenter<V: Any>(val store: Store) {
 
     fun bind(view: V) {
         this.view = view
-        disposable = store.subject.subscribe { update() }
+        disposable = store.subscribe({update()})
         update()
     }
 
