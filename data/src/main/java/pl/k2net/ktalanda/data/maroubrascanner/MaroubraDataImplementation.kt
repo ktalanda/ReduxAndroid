@@ -1,4 +1,4 @@
-package pl.k2net.ktalanda.data
+package pl.k2net.ktalanda.data.maroubrascanner
 
 import io.reactivex.Observable
 import okhttp3.OkHttpClient

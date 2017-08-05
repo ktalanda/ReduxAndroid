@@ -1,3 +1,3 @@
-package pl.k2net.ktalanda.maroubrascanner.redux
+package pl.k2net.ktalanda.redux
 
 interface ViewModel

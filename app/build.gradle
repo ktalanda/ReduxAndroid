@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply from: '../quality.gradle'
 
 String getFromLocalProperties(String key){
     Properties properties = new Properties()
@@ -12,6 +13,7 @@ String getFromLocalProperties(String key){
 def mswApiKey = System.getenv("MSW_API_KEY") == null ? getFromLocalProperties("MSW_API_KEY") :  System.getenv("MSW_API_KEY")
 
 ext {
+    support_version = '26.0.0'
     rxjava_version = '2.1.0'
     rxkotlin_version = '2.0.1'
     dagger_version = '2.10'
@@ -54,15 +56,15 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger:$dagger_version"
 
+    implementation "com.android.support:support-v4:$support_version"
     implementation "com.android.support.constraint:constraint-layout:$constraintlayout_version"
     implementation "com.github.PhilJay:MPAndroidChart:$mpandroidchart_version"
-
-    implementation 'com.android.support:support-v4:26.0.0'
 
     androidTestImplementation ("com.android.support.test.espresso:espresso-core:$espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation "junit:junit:$junit_version"
-    compile project(path: ':redux')
-    compile project(path: ':data')
+
+    implementation project(path: ':redux')
+    implementation project(path: ':data')
 }

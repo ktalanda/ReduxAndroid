@@ -1,0 +1,22 @@
+configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint 'com.github.shyiko:ktlint:0.9.0'
+}
+
+task ktlint(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+    // prepend "--reporter=plain?group_by_file" arg to change the reporter
+}
+
+task ktlintFormat(type: JavaExec) {
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
+
+check.dependsOn ktlint

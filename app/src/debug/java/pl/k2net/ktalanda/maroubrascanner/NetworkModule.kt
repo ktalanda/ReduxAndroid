@@ -2,8 +2,8 @@ package pl.k2net.ktalanda.maroubrascanner.release
 
 import dagger.Module
 import dagger.Provides
-import pl.k2net.ktalanda.data.MaroubraData
-import pl.k2net.ktalanda.data.MaroubraDataImplementation
+import pl.k2net.ktalanda.data.maroubrascanner.MaroubraData
+import pl.k2net.ktalanda.data.maroubrascanner.MaroubraDataImplementation
 import pl.k2net.ktalanda.maroubrascanner.BuildConfig
 import javax.inject.Singleton
 

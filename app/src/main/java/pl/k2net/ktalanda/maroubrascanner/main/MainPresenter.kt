@@ -6,10 +6,10 @@ import com.github.mikephil.charting.data.LineDataSet
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
-import pl.k2net.ktalanda.data.MaroubraData
+import pl.k2net.ktalanda.data.maroubrascanner.MaroubraData
 import pl.k2net.ktalanda.data.model.Forecast
-import pl.k2net.ktalanda.maroubrascanner.redux.Presenter
-import pl.k2net.ktalanda.maroubrascanner.redux.Store
+import pl.k2net.ktalanda.redux.Presenter
+import pl.k2net.ktalanda.redux.Store
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

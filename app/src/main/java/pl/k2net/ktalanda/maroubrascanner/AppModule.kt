@@ -6,7 +6,7 @@ import com.github.mikephil.charting.data.LineDataSet
 import dagger.Module
 import dagger.Provides
 import pl.k2net.ktalanda.maroubrascanner.main.MainViewModel
-import pl.k2net.ktalanda.maroubrascanner.redux.Store
+import pl.k2net.ktalanda.redux.Store
 import javax.inject.Singleton
 
 @Module
