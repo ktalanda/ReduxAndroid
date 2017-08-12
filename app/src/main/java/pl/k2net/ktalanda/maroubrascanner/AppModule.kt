@@ -1,12 +1,13 @@
 package pl.k2net.ktalanda.maroubrascanner
 
-import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.LineData
-import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.utils.ColorTemplate
 import dagger.Module
 import dagger.Provides
 import io.reactivex.subjects.PublishSubject
 import pl.k2net.ktalanda.maroubrascanner.main.MainViewModel
+import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import pl.k2net.ktalanda.redux.Store
 import javax.inject.Singleton
 
@@ -24,17 +25,19 @@ class AppModule(val app: App) {
         )
     }
 
-    @Provides fun provideLineDataSet(): LineDataSet {
-        val lineDataSet = LineDataSet(listOf(), "")
-        lineDataSet.setDrawFilled(true)
-        return lineDataSet
+    @Provides fun provideDataSet(): BarDataSet {
+        val dataSet = BarDataSet(listOf(), "")
+        dataSet.colors = ColorTemplate.MATERIAL_COLORS.toMutableList()
+        return dataSet
     }
 
-    @Provides fun provideLineData(): LineData {
-        return LineData()
+    @Provides fun provideData(): BarData {
+        val data = BarData()
+        data.barWidth = 1f
+        return data
     }
 
-    @Provides fun provideEntry(): Entry {
-        return Entry()
+    @Provides @Singleton fun provideEntryFactory(): BarEntryFactory {
+        return BarEntryFactory
     }
 }

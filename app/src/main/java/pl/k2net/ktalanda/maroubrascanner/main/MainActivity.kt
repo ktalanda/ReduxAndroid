@@ -2,7 +2,7 @@ package pl.k2net.ktalanda.maroubrascanner.main
 
 import android.app.Activity
 import android.os.Bundle
-import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.BarData
 import kotlinx.android.synthetic.main.activity_main.*
 import pl.k2net.ktalanda.maroubrascanner.App
 import pl.k2net.ktalanda.maroubrascanner.R
@@ -16,6 +16,8 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
         setContentView(R.layout.activity_main)
         (application as App).component.inject(this)
         presenter.bind(this)
+
+        presenter.refreshData()
 
         swellChart.setDrawGridBackground(true)
         swellChart.setDrawBorders(false)
@@ -35,7 +37,7 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
         }
     }
 
-    override fun updateDataSet(data: LineData) {
+    override fun updateDataSet(data: BarData) {
         swellChart.data = data
         swellChart.notifyDataSetChanged()
         swellChart.invalidate()
