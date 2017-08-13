@@ -5,5 +5,5 @@ import pl.k2net.ktalanda.data.model.Forecast
 
 interface MaroubraData {
     fun init(key: String, isDebug: Boolean = false)
-    fun getForecast(): Observable<List<Forecast>>
+    fun getForecast(): Observable<Forecast>
 }

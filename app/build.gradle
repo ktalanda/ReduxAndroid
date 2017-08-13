@@ -68,5 +68,6 @@ dependencies {
     testImplementation "com.nhaarman:mockito-kotlin:$mockito_version"
 
     implementation project(path: ':redux')
+    implementation project(path: ':domain')
     implementation project(path: ':data')
 }

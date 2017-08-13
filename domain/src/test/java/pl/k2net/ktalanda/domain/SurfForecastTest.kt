@@ -1,5 +1,6 @@
 package pl.k2net.ktalanda.domain
 
+import com.nhaarman.mockito_kotlin.mock
 import io.reactivex.Observable
 import org.junit.Assert
 import org.junit.Before
@@ -12,7 +13,7 @@ import pl.k2net.ktalanda.data.model.Wind
 import java.util.*
 
 class SurfForecastTest {
-    val surfForecast: SurfForecast = SurfForecast()
+    val surfForecast: SurfForecast = SurfForecast(mock())
 
     val forecastArray = listOf(
             Forecast(
@@ -177,6 +178,6 @@ class SurfForecastTest {
     fun givenValidForecast_whenMapForecastToSurfCondition_shouldReturnValidSurfCondition() {
         val actual = surfForecast.mapForecastToSurfCondition(forecastArray[0])
 
-        Assert.assertEquals(SurfCondition(Date(1502582400000), 1.5, 10), actual)
+        Assert.assertEquals(SurfCondition(Date(1502582400000), 1.5, 10, "SSE"), actual)
     }
 }
