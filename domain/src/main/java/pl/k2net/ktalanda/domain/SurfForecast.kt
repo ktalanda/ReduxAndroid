@@ -7,12 +7,14 @@ import java.util.*
 
 class SurfForecast(val maroubraData: MaroubraData) {
 
-    fun getForecast(): Observable<SurfCondition>{
+    fun getForecast(): Observable<SurfCondition> {
         return processForecast(maroubraData.getForecast())
     }
 
     fun processForecast(forecastStream: Observable<Forecast>): Observable<SurfCondition> {
         return forecastStream.map { mapForecastToSurfCondition(it) }
+                .buffer(5)
+                .map { it[0] }
     }
 
     fun mapForecastToSurfCondition(forecast: Forecast): SurfCondition {

@@ -144,7 +144,7 @@ class SurfForecastTest {
                 { errorSpy = true }
         )
 
-        Assert.assertEquals(2, actualList.size)
+        Assert.assertEquals(1, actualList.size)
         Assert.assertFalse(errorSpy)
     }
 
