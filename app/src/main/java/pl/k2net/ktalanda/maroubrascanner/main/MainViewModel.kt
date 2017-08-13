@@ -1,7 +1,7 @@
 package pl.k2net.ktalanda.maroubrascanner.main
 
 import pl.k2net.ktalanda.redux.ViewModel
-import java.util.*
+import java.util.Date
 
 data class MainViewModel(
         val surfConditionList: List<SurfConditionViewModel> = listOf(

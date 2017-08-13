@@ -11,7 +11,7 @@ import pl.k2net.ktalanda.domain.SurfForecast
 import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import pl.k2net.ktalanda.redux.Presenter
 import pl.k2net.ktalanda.redux.Store
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton

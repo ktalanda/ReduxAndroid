@@ -1,6 +1,6 @@
 package pl.k2net.ktalanda.domain
 
-import java.util.*
+import java.util.Date
 
 data class SurfCondition(
         val time: Date,

@@ -9,7 +9,7 @@ import pl.k2net.ktalanda.domain.SurfCondition
 import pl.k2net.ktalanda.domain.SurfForecast
 import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import pl.k2net.ktalanda.redux.Store
-import java.util.*
+import java.util.Date
 
 class MainPresenterTest internal constructor() {
 

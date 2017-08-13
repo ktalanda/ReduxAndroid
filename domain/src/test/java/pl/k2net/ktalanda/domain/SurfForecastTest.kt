@@ -10,7 +10,7 @@ import pl.k2net.ktalanda.data.model.Forecast
 import pl.k2net.ktalanda.data.model.Swell
 import pl.k2net.ktalanda.data.model.SwellComponent
 import pl.k2net.ktalanda.data.model.Wind
-import java.util.*
+import java.util.Date
 
 class SurfForecastTest {
     val surfForecast: SurfForecast = SurfForecast(mock())
