@@ -25,6 +25,10 @@ class MainPresenter @Inject constructor(
         val entryFactory: BarEntryFactory
 ) : Presenter<MainPresenter.ViewInterface>(store) {
 
+    init {
+        refreshData()
+    }
+
     override fun update() {
         view.updateDataSet(mapValuesToLineData(
                 (store.state[MainViewModel::class.toString()] as MainViewModel).swellList))

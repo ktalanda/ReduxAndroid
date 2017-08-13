@@ -1,0 +1,48 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply from: '../quality.gradle'
+
+ext {
+    kotlin_version = '1.1.3-2'
+    rxkotlin_version = '2.0.1'
+    rxjava_version = '2.1.1'
+
+    junit_version = '4.12'
+    mockito_version = '1.5.0'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "com.nhaarman:mockito-kotlin:$mockito_version"
+
+    implementation project(path: ':data')
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
