@@ -3,7 +3,11 @@ package pl.k2net.ktalanda.maroubrascanner.main
 import android.app.Activity
 import android.os.Bundle
 import com.github.mikephil.charting.data.BarData
-import kotlinx.android.synthetic.main.activity_main.*
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
+import kotlinx.android.synthetic.main.activity_main.refreshLayout
+import kotlinx.android.synthetic.main.activity_main.swellChart
 import pl.k2net.ktalanda.maroubrascanner.App
 import pl.k2net.ktalanda.maroubrascanner.R
 import javax.inject.Inject
@@ -13,23 +17,32 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         (application as App).component.inject(this)
         presenter.bind(this)
 
-        presenter.refreshData()
-
-        swellChart.setDrawGridBackground(true)
-        swellChart.setDrawBorders(false)
-        swellChart.description.isEnabled = false
-        swellChart.axisLeft.setDrawGridLines(false)
-        swellChart.axisLeft.setDrawLabels(false)
-        swellChart.axisLeft.setDrawAxisLine(false)
-        swellChart.axisRight.setDrawGridLines(false)
-        swellChart.axisRight.setDrawLabels(false)
-        swellChart.axisRight.setDrawAxisLine(false)
-        swellChart.axisLeft.axisMinimum = 0.0f
-        swellChart.axisLeft.setDrawGridLines(false)
+        swellChart.run {
+            axisLeft.run {
+                setDrawGridLines(false)
+                setDrawLabels(false)
+                setDrawAxisLine(false)
+                axisMinimum = 0.0f
+                setDrawGridLines(false)
+            }
+            axisRight.run {
+                setDrawGridLines(false)
+                setDrawLabels(false)
+                setDrawAxisLine(false)
+            }
+            description.isEnabled = false
+            isDoubleTapToZoomEnabled = false
+            setPinchZoom(false)
+            setScaleEnabled(false)
+            setOnChartValueSelectedListener(ChartClick())
+            setDrawGridBackground(true)
+            setDrawBorders(false)
+        }
 
         refreshLayout.setOnRefreshListener {
             presenter.refreshData()
@@ -38,8 +51,18 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
     }
 
     override fun updateDataSet(data: BarData) {
-        swellChart.data = data
-        swellChart.notifyDataSetChanged()
-        swellChart.invalidate()
+        swellChart.run {
+            this.data = data
+            notifyDataSetChanged()
+            invalidate()
+        }
+    }
+
+    class ChartClick : OnChartValueSelectedListener {
+        override fun onValueSelected(entry: Entry?, highlight: Highlight?) {
+        }
+
+        override fun onNothingSelected() {
+        }
     }
 }

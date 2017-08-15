@@ -47,17 +47,19 @@ class MainPresenter @Inject constructor(
     }
 
     fun mapSwellViewModelToEntry(swellViewModel: MainViewModel.SurfConditionViewModel): BarEntry {
-        val now = Date().time / 1000
-        val h = (swellViewModel.date.time - now) / 60 / 60
-        val entry = entryFactory.create(
-                h.toFloat(),
-                swellViewModel.height.toFloat()
-        )
-        return entry
+        val now = Date().time
+        val time = (swellViewModel.date.time - now) / 60 / 60 / 1000
+
+        return entryFactory.create(
+                time.toFloat(),
+                swellViewModel.height.toFloat())
     }
 
     fun mapSurfConditionToSwellViewModel(surfCondition: SurfCondition): MainViewModel.SurfConditionViewModel {
-        return MainViewModel.SurfConditionViewModel(surfCondition.time, surfCondition.swellHeight, surfCondition.period, surfCondition.direction)
+        return MainViewModel.SurfConditionViewModel(surfCondition.time,
+                surfCondition.swellHeight,
+                surfCondition.period,
+                surfCondition.direction)
     }
 
     interface ViewInterface {
