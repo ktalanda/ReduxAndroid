@@ -3,7 +3,7 @@ apply plugin: 'kotlin'
 apply from: '../quality.gradle'
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.3-2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.4"
     implementation "io.reactivex.rxjava2:rxkotlin:2.1.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
