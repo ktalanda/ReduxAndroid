@@ -5,9 +5,12 @@ import com.github.mikephil.charting.data.BarDataSet
 import dagger.Module
 import dagger.Provides
 import io.reactivex.subjects.PublishSubject
+import pl.k2net.ktalanda.domain.SurfForecast
+import pl.k2net.ktalanda.maroubrascanner.main.MainPresenter
 import pl.k2net.ktalanda.maroubrascanner.main.MainViewModel
 import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import pl.k2net.ktalanda.redux.Store
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -35,5 +38,11 @@ class AppModule(val app: App) {
 
     @Provides @Singleton fun provideEntryFactory(): BarEntryFactory {
         return BarEntryFactory
+    }
+
+    @Provides @Singleton fun provideMainPresenter(store: Store, surfForecast: SurfForecast, dataSetProvider: Provider<BarDataSet>, dataProvider: Provider<BarData>, entryFactory: BarEntryFactory): MainPresenter {
+        val result = MainPresenter(store, surfForecast, dataSetProvider, dataProvider, entryFactory)
+        result.refreshData()
+        return result
     }
 }

@@ -8,12 +8,12 @@ import pl.k2net.ktalanda.redux.ViewModel
 
 object MaroubraReducer : Reducer {
     override fun reduce(viewModel: ViewModel, action: Action) : ViewModel {
-        when (action) {
+        return when (action) {
             is MainUpdateDataAction -> {
-                return MainViewModel(action.updatedSwellData)
+                MainViewModel(action.updatedSwellData)
             }
             else -> {
-                return viewModel
+                viewModel
             }
         }
     }

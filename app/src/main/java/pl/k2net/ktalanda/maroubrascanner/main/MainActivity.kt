@@ -50,9 +50,9 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
         }
     }
 
-    override fun updateDataSet(data: BarData) {
+    override fun updateDataSet(updatedData: BarData) {
         swellChart.run {
-            this.data = data
+            data = updatedData
             notifyDataSetChanged()
             invalidate()
         }

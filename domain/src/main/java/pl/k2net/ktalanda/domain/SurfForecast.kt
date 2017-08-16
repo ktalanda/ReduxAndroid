@@ -5,7 +5,7 @@ import pl.k2net.ktalanda.data.maroubrascanner.MaroubraData
 import pl.k2net.ktalanda.data.model.Forecast
 import java.util.Date
 
-class SurfForecast(val maroubraData: MaroubraData) {
+class SurfForecast(private val maroubraData: MaroubraData) {
 
     fun getForecast(): Observable<SurfCondition> {
         return processForecast(maroubraData.getForecast())

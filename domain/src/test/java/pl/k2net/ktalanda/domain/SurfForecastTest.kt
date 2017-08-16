@@ -13,9 +13,9 @@ import pl.k2net.ktalanda.data.model.Wind
 import java.util.Date
 
 class SurfForecastTest {
-    val surfForecast: SurfForecast = SurfForecast(mock())
+    private val surfForecast: SurfForecast = SurfForecast(mock())
 
-    val forecastArray = listOf(
+    private val forecastArray = listOf(
             Forecast(
                     1502550000,
                     1502582400,

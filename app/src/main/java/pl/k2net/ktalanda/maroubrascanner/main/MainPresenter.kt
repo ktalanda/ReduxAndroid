@@ -12,17 +12,14 @@ import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import pl.k2net.ktalanda.redux.Presenter
 import pl.k2net.ktalanda.redux.Store
 import java.util.Date
-import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
 
-@Singleton
-class MainPresenter @Inject constructor(
+class MainPresenter(
         store: Store,
-        val surfForecast: SurfForecast,
-        val dataSetProvider: Provider<BarDataSet>,
-        val dataProvider: Provider<BarData>,
-        val entryFactory: BarEntryFactory
+        private val surfForecast: SurfForecast,
+        private val dataSetProvider: Provider<BarDataSet>,
+        private val dataProvider: Provider<BarData>,
+        private val entryFactory: BarEntryFactory
 ) : Presenter<MainPresenter.ViewInterface>(store) {
     override fun update() {
         view.updateDataSet(mapValuesToLineData(
@@ -38,7 +35,7 @@ class MainPresenter @Inject constructor(
                 .subscribe(Consumer { store.dispatch(MainUpdateDataAction(it)) })
     }
 
-    fun mapValuesToLineData(swellList: List<MainViewModel.SurfConditionViewModel>): BarData {
+    private fun mapValuesToLineData(swellList: List<MainViewModel.SurfConditionViewModel>): BarData {
         val result = dataProvider.get()
         val dataSet = dataSetProvider.get()
         dataSet.values = swellList.map { mapSwellViewModelToEntry(it) }
@@ -46,7 +43,7 @@ class MainPresenter @Inject constructor(
         return result
     }
 
-    fun mapSwellViewModelToEntry(swellViewModel: MainViewModel.SurfConditionViewModel): BarEntry {
+    private fun mapSwellViewModelToEntry(swellViewModel: MainViewModel.SurfConditionViewModel): BarEntry {
         val now = Date().time
         val time = (swellViewModel.date.time - now) / 60 / 60 / 1000
 
@@ -63,6 +60,6 @@ class MainPresenter @Inject constructor(
     }
 
     interface ViewInterface {
-        fun updateDataSet(data: BarData)
+        fun updateDataSet(updatedData: BarData)
     }
 }
