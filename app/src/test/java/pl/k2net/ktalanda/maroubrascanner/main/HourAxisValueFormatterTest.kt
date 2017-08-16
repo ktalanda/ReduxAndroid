@@ -15,7 +15,7 @@ class HourAxisValueFormatterTest {
 
     @Test
     fun givenPositiveInputValue_whenGetFormattedValue_shouldReturnCorrectDate() {
-        val actual = hourAxisValueFormatter.getFormattedValue(10f, null)
+        val actual = hourAxisValueFormatter.getFormattedValue(20f, null)
         Assert.assertEquals("17/08/17", actual)
     }
 
