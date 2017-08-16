@@ -14,6 +14,7 @@ import javax.inject.Inject
 
 class MainActivity : Activity(), MainPresenter.ViewInterface {
     @Inject lateinit var presenter: MainPresenter
+    @Inject lateinit var valueFormatter: HourAxisValueFormatter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,7 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
                 setDrawLabels(false)
                 setDrawAxisLine(false)
             }
+            xAxis.valueFormatter = valueFormatter
             description.isEnabled = false
             isDoubleTapToZoomEnabled = false
             setPinchZoom(false)

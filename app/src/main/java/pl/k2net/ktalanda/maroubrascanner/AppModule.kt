@@ -6,10 +6,12 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.subjects.PublishSubject
 import pl.k2net.ktalanda.domain.SurfForecast
+import pl.k2net.ktalanda.maroubrascanner.main.HourAxisValueFormatter
 import pl.k2net.ktalanda.maroubrascanner.main.MainPresenter
 import pl.k2net.ktalanda.maroubrascanner.main.MainViewModel
 import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import pl.k2net.ktalanda.redux.Store
+import java.util.Date
 import javax.inject.Provider
 import javax.inject.Singleton
 
@@ -44,5 +46,9 @@ class AppModule(val app: App) {
         val result = MainPresenter(store, surfForecast, dataSetProvider, dataProvider, entryFactory)
         result.refreshData()
         return result
+    }
+
+    @Provides @Singleton fun provideHourAxisValueFormatter(): HourAxisValueFormatter {
+        return HourAxisValueFormatter(Date().time)
     }
 }
