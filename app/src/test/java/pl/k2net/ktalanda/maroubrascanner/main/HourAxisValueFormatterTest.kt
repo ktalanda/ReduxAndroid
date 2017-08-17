@@ -6,7 +6,7 @@ import org.junit.Test
 
 class HourAxisValueFormatterTest {
 
-    lateinit var hourAxisValueFormatter: HourAxisValueFormatter
+    private lateinit var hourAxisValueFormatter: HourAxisValueFormatter
 
     @Before
     fun setUp() {

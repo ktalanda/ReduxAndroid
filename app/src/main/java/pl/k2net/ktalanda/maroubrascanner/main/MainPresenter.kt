@@ -45,10 +45,10 @@ class MainPresenter(
 
     private fun mapSwellViewModelToEntry(swellViewModel: MainViewModel.SurfConditionViewModel): BarEntry {
         val now = Date().time
-        val time = (swellViewModel.date.time - now) / 60 / 60 / 1000
+        val timeHourDelta = (swellViewModel.date.time - now) / 60 / 60 / 1000
 
         return entryFactory.create(
-                time.toFloat(),
+                timeHourDelta.toFloat(),
                 swellViewModel.height.toFloat())
     }
 
