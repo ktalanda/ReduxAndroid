@@ -6,13 +6,13 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.subjects.PublishSubject
 import pl.k2net.ktalanda.domain.SurfForecast
-import pl.k2net.ktalanda.maroubrascanner.main.HourAxisValueFormatter
 import pl.k2net.ktalanda.maroubrascanner.main.MainPresenter
-import pl.k2net.ktalanda.maroubrascanner.main.MainViewModel
+import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartMapper
+import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartViewModel
+import pl.k2net.ktalanda.maroubrascanner.main.chart.HourAxisValueFormatter
 import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import pl.k2net.ktalanda.redux.Store
 import java.util.Date
-import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -23,7 +23,7 @@ class AppModule(val app: App) {
         return Store(
                 MaroubraReducer,
                 PublishSubject.create(),
-                hashMapOf(MainViewModel::class.toString() to MainViewModel()))
+                hashMapOf(ChartViewModel::class.toString() to ChartViewModel(listOf())))
     }
 
     @Provides fun provideDataSet(): BarDataSet {
@@ -42,8 +42,8 @@ class AppModule(val app: App) {
         return BarEntryFactory
     }
 
-    @Provides @Singleton fun provideMainPresenter(store: Store, surfForecast: SurfForecast, dataSetProvider: Provider<BarDataSet>, dataProvider: Provider<BarData>, entryFactory: BarEntryFactory): MainPresenter {
-        val result = MainPresenter(store, surfForecast, dataSetProvider, dataProvider, entryFactory)
+    @Provides @Singleton fun provideMainPresenter(store: Store, surfForecast: SurfForecast, chartMapper: ChartMapper): MainPresenter {
+        val result = MainPresenter(store, surfForecast, chartMapper)
         result.refreshData()
         return result
     }

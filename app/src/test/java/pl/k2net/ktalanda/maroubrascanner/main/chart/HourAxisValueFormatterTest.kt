@@ -1,4 +1,4 @@
-package pl.k2net.ktalanda.maroubrascanner.main
+package pl.k2net.ktalanda.maroubrascanner.main.chart
 
 import org.junit.Assert
 import org.junit.Before

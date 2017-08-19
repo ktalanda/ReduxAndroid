@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.refreshLayout
 import kotlinx.android.synthetic.main.activity_main.swellChart
 import pl.k2net.ktalanda.maroubrascanner.App
 import pl.k2net.ktalanda.maroubrascanner.R
+import pl.k2net.ktalanda.maroubrascanner.main.chart.HourAxisValueFormatter
 import javax.inject.Inject
 
 class MainActivity : Activity(), MainPresenter.ViewInterface {
