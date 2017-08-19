@@ -6,5 +6,7 @@ data class SurfCondition(
         val time: Date,
         val swellHeight: Double,
         val period: Int,
-        val direction: String
+        val direction: String,
+        val windSpeed: Int,
+        val windDirection: String
 )

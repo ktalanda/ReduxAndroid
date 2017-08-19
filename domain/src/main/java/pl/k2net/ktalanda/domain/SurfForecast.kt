@@ -22,7 +22,15 @@ class SurfForecast(private val maroubraData: MaroubraData) {
         val swellHeight = (forecast.swell.minBreakingHeight + forecast.swell.maxBreakingHeight).toDouble() / 2
         val period = forecast.swell.components["combined"]!!.period
         val direction = forecast.swell.components["combined"]!!.compassDirection
+        val windSpeed = forecast.wind.speed
+        val windDirection = forecast.wind.compassDirection
 
-        return SurfCondition(date, swellHeight, period, direction)
+        return SurfCondition(
+                date,
+                swellHeight,
+                period,
+                direction,
+                windSpeed,
+                windDirection)
     }
 }

@@ -178,6 +178,6 @@ class SurfForecastTest {
     fun givenValidForecast_whenMapForecastToSurfCondition_shouldReturnValidSurfCondition() {
         val actual = surfForecast.mapForecastToSurfCondition(forecastArray[0])
 
-        Assert.assertEquals(SurfCondition(Date(1502582400000), 1.5, 10, "SSE"), actual)
+        Assert.assertEquals(SurfCondition(Date(1502582400000), 1.5, 10, "SSE", 21, "W"), actual)
     }
 }
