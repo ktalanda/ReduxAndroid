@@ -12,6 +12,6 @@ install:
   - echo y | android update sdk -u -a -t extra-android-m2repository
 
 script:
-  - ./gradlew clean build -Pci --scan --configure-on-demand --parallel --stacktrace
+  - ./gradlew clean build -Pci --scan --configure-on-demand
 
 sudo: false
