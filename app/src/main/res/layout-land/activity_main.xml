@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-        <com.github.mikephil.charting.charts.BarChart
+        <pl.k2net.ktalanda.maroubrascanner.main.chart.SurfChart
             android:id="@+id/swellChart"
             android:layout_width="0dp"
             android:layout_height="match_parent"

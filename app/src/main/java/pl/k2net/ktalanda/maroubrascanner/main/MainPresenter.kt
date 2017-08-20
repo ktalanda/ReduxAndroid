@@ -40,5 +40,6 @@ class MainPresenter(
 
     interface ViewInterface {
         fun updateDataSet(updatedData: BarData)
+        fun updateDetails(updatedDetails: DetailsViewModel.Element)
     }
 }
