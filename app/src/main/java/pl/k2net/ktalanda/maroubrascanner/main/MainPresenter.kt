@@ -23,6 +23,7 @@ class MainPresenter(
     override fun update() {
         view.updateDataSet(chartMapper.mapValuesToData(
                 (store.state[ChartViewModel::class.toString()] as ChartViewModel).surfConditionList))
+        view.updateDetails((store.state[DetailsViewModel.Element::class.toString()] as DetailsViewModel.Element))
     }
 
     fun refreshData() {

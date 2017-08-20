@@ -3,9 +3,14 @@ package pl.k2net.ktalanda.maroubrascanner.main
 import android.app.Activity
 import android.os.Bundle
 import com.github.mikephil.charting.data.BarData
-import kotlinx.android.synthetic.main.activity_main.conditionTime
 import kotlinx.android.synthetic.main.activity_main.refreshLayout
+import kotlinx.android.synthetic.main.activity_main.surfDetails
 import kotlinx.android.synthetic.main.activity_main.swellChart
+import kotlinx.android.synthetic.main.view_surf_details.view.direction
+import kotlinx.android.synthetic.main.view_surf_details.view.swellHeight
+import kotlinx.android.synthetic.main.view_surf_details.view.time
+import kotlinx.android.synthetic.main.view_surf_details.view.windDirection
+import kotlinx.android.synthetic.main.view_surf_details.view.windSpeed
 import pl.k2net.ktalanda.maroubrascanner.App
 import pl.k2net.ktalanda.maroubrascanner.R
 import pl.k2net.ktalanda.maroubrascanner.main.chart.HourAxisValueFormatter
@@ -30,7 +35,7 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
     }
 
     override fun updateDataSet(updatedData: BarData) {
-        swellChart.run {
+        swellChart?.run {
             data = updatedData
             notifyDataSetChanged()
             invalidate()
@@ -38,7 +43,10 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
     }
 
     override fun updateDetails(updatedDetails: DetailsViewModel.Element) {
-        conditionTime?.text = updatedDetails.direction
+        surfDetails.time.text = updatedDetails.time.toString()
+        surfDetails.swellHeight.text = updatedDetails.swellHeight.toString()
+        surfDetails.direction.text = updatedDetails.direction
+        surfDetails.windSpeed.text = updatedDetails.windSpeed.toString()
+        surfDetails.windDirection.text = updatedDetails.windDirection
     }
-
 }

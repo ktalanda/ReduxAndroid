@@ -47,8 +47,9 @@ class SurfChart : BarChart, SurfChartPresenter.ViewInterface {
         setDrawBorders(false)
     }
 
-    class ChartClick : OnChartValueSelectedListener {
+    inner class ChartClick : OnChartValueSelectedListener {
         override fun onValueSelected(entry: Entry?, highlight: Highlight?) {
+            presenter.showDetails()
         }
 
         override fun onNothingSelected() {
