@@ -21,8 +21,7 @@ class SurfChart : BarChart, SurfChartPresenter.ViewInterface {
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
-    override fun init() {
-        super.init()
+    fun config() {
         ((context as Activity).application as App).component.inject(this)
         presenter.bind(this)
         axisLeft.run {
@@ -40,7 +39,6 @@ class SurfChart : BarChart, SurfChartPresenter.ViewInterface {
         xAxis.valueFormatter = valueFormatter
         description.isEnabled = false
         isDoubleTapToZoomEnabled = false
-
         setPinchZoom(false)
         setScaleEnabled(false)
         setOnChartValueSelectedListener(ChartClick())

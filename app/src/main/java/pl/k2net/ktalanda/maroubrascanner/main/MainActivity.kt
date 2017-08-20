@@ -32,6 +32,7 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
             presenter.refreshData()
             refreshLayout.isRefreshing = false
         }
+        swellChart.config()
     }
 
     override fun updateDataSet(updatedData: BarData) {
