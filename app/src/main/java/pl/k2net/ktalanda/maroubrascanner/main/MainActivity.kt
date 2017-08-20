@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.activity_main.refreshLayout
 import kotlinx.android.synthetic.main.activity_main.surfDetails
 import kotlinx.android.synthetic.main.activity_main.swellChart
 import kotlinx.android.synthetic.main.view_surf_details.view.direction
+import kotlinx.android.synthetic.main.view_surf_details.view.period
 import kotlinx.android.synthetic.main.view_surf_details.view.swellHeight
 import kotlinx.android.synthetic.main.view_surf_details.view.time
 import kotlinx.android.synthetic.main.view_surf_details.view.windDirection
@@ -46,6 +47,7 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
     override fun updateDetails(updatedDetails: DetailsViewModel.Element) {
         surfDetails.time.text = updatedDetails.time.toString()
         surfDetails.swellHeight.text = updatedDetails.swellHeight.toString()
+        surfDetails.period.text = updatedDetails.period.toString()
         surfDetails.direction.text = updatedDetails.direction
         surfDetails.windSpeed.text = updatedDetails.windSpeed.toString()
         surfDetails.windDirection.text = updatedDetails.windDirection
