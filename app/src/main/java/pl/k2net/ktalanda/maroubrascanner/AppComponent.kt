@@ -3,7 +3,6 @@ package pl.k2net.ktalanda.maroubrascanner
 import dagger.Component
 import pl.k2net.ktalanda.maroubrascanner.main.MainActivity
 import pl.k2net.ktalanda.maroubrascanner.main.chart.SurfChart
-import pl.k2net.ktalanda.maroubrascanner.main.details.SurfDetailsView
 import javax.inject.Singleton
 
 @Singleton
@@ -14,6 +13,4 @@ interface AppComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(surfChart: SurfChart)
-
-    fun inject(surfDetailsView: SurfDetailsView)
 }

@@ -5,7 +5,6 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
-import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import java.util.Date
 
 class ChartMapperTest internal constructor() {

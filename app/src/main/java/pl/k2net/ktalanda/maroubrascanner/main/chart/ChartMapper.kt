@@ -4,7 +4,6 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
-import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
 import java.util.Date
 import javax.inject.Inject
 import javax.inject.Provider
@@ -34,6 +33,7 @@ class ChartMapper @Inject constructor(private val dataSetProvider: Provider<BarD
 
         return entryFactory.create(
                 timeHourDelta.toFloat(),
-                swellViewModel.height.toFloat())
+                swellViewModel.height.toFloat(),
+                swellViewModel.date)
     }
 }

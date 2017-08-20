@@ -1,11 +1,9 @@
 package pl.k2net.ktalanda.maroubrascanner.main.details
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import pl.k2net.ktalanda.maroubrascanner.App
 import pl.k2net.ktalanda.maroubrascanner.R
 
 class SurfDetailsView : LinearLayout {
@@ -19,10 +17,4 @@ class SurfDetailsView : LinearLayout {
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        ((context as Activity).application as App).component.inject(this)
-    }
-
 }

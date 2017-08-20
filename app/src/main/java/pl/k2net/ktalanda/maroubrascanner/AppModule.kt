@@ -12,7 +12,7 @@ import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartViewModel
 import pl.k2net.ktalanda.maroubrascanner.main.chart.HourAxisValueFormatter
 import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
 import pl.k2net.ktalanda.maroubrascanner.main.details.SurfDetailsMapper
-import pl.k2net.ktalanda.maroubrascanner.utils.BarEntryFactory
+import pl.k2net.ktalanda.maroubrascanner.main.chart.BarEntryFactory
 import pl.k2net.ktalanda.redux.Store
 import java.util.Date
 import javax.inject.Singleton

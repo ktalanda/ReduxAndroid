@@ -8,6 +8,7 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import pl.k2net.ktalanda.maroubrascanner.App
+import java.util.Date
 import javax.inject.Inject
 
 class SurfChart : BarChart, SurfChartPresenter.ViewInterface {
@@ -49,7 +50,7 @@ class SurfChart : BarChart, SurfChartPresenter.ViewInterface {
 
     inner class ChartClick : OnChartValueSelectedListener {
         override fun onValueSelected(entry: Entry?, highlight: Highlight?) {
-            presenter.showDetails()
+            presenter.showDetails(entry!!.data as Date)
         }
 
         override fun onNothingSelected() {
