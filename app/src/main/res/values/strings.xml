@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MaroubraScanner</string>
+
+    <string name="swellHeightLabel">Swell Height</string>
+    <string name="periodLabel">Swell Period</string>
+    <string name="directionLabel">Swell Direction</string>
+    <string name="windspeedLabel">Wind Speed</string>
+    <string name="windDirectionLabel">Wind Direction</string>
 </resources>

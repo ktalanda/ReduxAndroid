@@ -16,6 +16,8 @@ import pl.k2net.ktalanda.maroubrascanner.App
 import pl.k2net.ktalanda.maroubrascanner.R
 import pl.k2net.ktalanda.maroubrascanner.main.chart.HourAxisValueFormatter
 import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
+import java.text.SimpleDateFormat
+import java.util.Locale
 import javax.inject.Inject
 
 class MainActivity : Activity(), MainPresenter.ViewInterface {
@@ -45,7 +47,7 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
     }
 
     override fun updateDetails(updatedDetails: DetailsViewModel.Element) {
-        surfDetails.time.text = updatedDetails.time.toString()
+        surfDetails.time.text = SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.ENGLISH).format(updatedDetails.time)
         surfDetails.swellHeight.text = updatedDetails.swellHeight.toString()
         surfDetails.period.text = updatedDetails.period.toString()
         surfDetails.direction.text = updatedDetails.direction
