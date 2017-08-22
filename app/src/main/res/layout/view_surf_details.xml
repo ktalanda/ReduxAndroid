@@ -15,7 +15,8 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
         <TableRow>
             <TextView
                 android:layout_width="100dp"
@@ -55,11 +56,11 @@
                 android:textSize="16sp"
                 android:textStyle="bold"/>
         </TableRow>
-        <TableRow>
+        <TableRow android:layout_marginTop="20dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/windspeedLabel" />
+                android:text="@string/windSpeedLabel" />
 
             <TextView
                 android:id="@+id/windSpeed"

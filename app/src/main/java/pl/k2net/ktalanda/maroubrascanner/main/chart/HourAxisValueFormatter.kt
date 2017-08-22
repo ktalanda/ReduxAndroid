@@ -10,6 +10,6 @@ class HourAxisValueFormatter(private val referenceTimestamp: Long) : IAxisValueF
     override fun getFormattedValue(value: Float, axis: AxisBase?): String {
         val originalTimestamp = referenceTimestamp + value.toLong() * 60 * 60 * 1000
         val date = Date(originalTimestamp)
-        return SimpleDateFormat( "dd/MM/yy", Locale.ENGLISH).format(date)
+        return SimpleDateFormat( "EEE", Locale.ENGLISH).format(date)
     }
 }

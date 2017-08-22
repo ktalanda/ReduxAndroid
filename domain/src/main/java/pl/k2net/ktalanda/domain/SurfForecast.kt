@@ -13,7 +13,7 @@ class SurfForecast(private val maroubraData: MaroubraData) {
 
     fun processForecast(forecastStream: Observable<Forecast>): Observable<SurfCondition> {
         return forecastStream.map { mapForecastToSurfCondition(it) }
-                .buffer(5)
+                .buffer(4)
                 .map { it[0] }
     }
 

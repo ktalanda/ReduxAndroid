@@ -47,11 +47,11 @@ class MainActivity : Activity(), MainPresenter.ViewInterface {
     }
 
     override fun updateDetails(updatedDetails: DetailsViewModel.Element) {
-        surfDetails.time.text = SimpleDateFormat("dd/MM/yyyy hh:mm", Locale.ENGLISH).format(updatedDetails.time)
-        surfDetails.swellHeight.text = updatedDetails.swellHeight.toString()
-        surfDetails.period.text = updatedDetails.period.toString()
+        surfDetails.time.text = SimpleDateFormat("EEEE dd/MM/yyyy HH:mm", Locale.ENGLISH).format(updatedDetails.time)
+        surfDetails.swellHeight.text = getString(R.string.swellHeightValue, updatedDetails.swellHeight)
+        surfDetails.period.text = getString(R.string.periodValue, updatedDetails.period)
         surfDetails.direction.text = updatedDetails.direction
-        surfDetails.windSpeed.text = updatedDetails.windSpeed.toString()
+        surfDetails.windSpeed.text = getString(R.string.windSpeedValue, updatedDetails.windSpeed)
         surfDetails.windDirection.text = updatedDetails.windDirection
     }
 }
