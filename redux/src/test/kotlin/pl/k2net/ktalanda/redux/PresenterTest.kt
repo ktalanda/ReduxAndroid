@@ -8,8 +8,8 @@ import org.junit.Test
 
 class PresenterTest {
 
-    val store: Store = Store(mock(), PublishSubject.create(), HashMap<String, ViewModel>())
-    lateinit var presenter: PresenterTestImplementation
+    private val store: Store = Store(mock(), PublishSubject.create(), mock(), HashMap<String, ViewModel>())
+    private lateinit var presenter: PresenterTestImplementation
 
     @Before
     fun setUp() {

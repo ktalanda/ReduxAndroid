@@ -7,12 +7,12 @@ import dagger.Provides
 import io.reactivex.subjects.PublishSubject
 import pl.k2net.ktalanda.domain.SurfForecast
 import pl.k2net.ktalanda.maroubrascanner.main.MainPresenter
+import pl.k2net.ktalanda.maroubrascanner.main.chart.BarEntryFactory
 import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartMapper
 import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartViewModel
 import pl.k2net.ktalanda.maroubrascanner.main.chart.HourAxisValueFormatter
 import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
 import pl.k2net.ktalanda.maroubrascanner.main.details.SurfDetailsMapper
-import pl.k2net.ktalanda.maroubrascanner.main.chart.BarEntryFactory
 import pl.k2net.ktalanda.redux.Store
 import java.util.Date
 import javax.inject.Singleton
@@ -25,6 +25,7 @@ class AppModule(val app: App) {
         return Store(
                 MaroubraReducer,
                 PublishSubject.create(),
+                AppLogger,
                 hashMapOf(
                         ChartViewModel::class.toString() to ChartViewModel(listOf()),
                         DetailsViewModel::class.toString() to DetailsViewModel(listOf()),

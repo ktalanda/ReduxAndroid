@@ -12,17 +12,17 @@ import org.junit.Test
 
 class StoreTest {
 
-    lateinit var store: Store
-    lateinit var viewModelMock: ViewModel
-    lateinit var reducerMock: Reducer
-    lateinit var state: Map<String, ViewModel>
+    private lateinit var store: Store
+    private lateinit var viewModelMock: ViewModel
+    private lateinit var reducerMock: Reducer
+    private lateinit var state: Map<String, ViewModel>
 
     @Before
     fun setUp() {
         viewModelMock = mock()
         reducerMock = mock { on { reduce(any(), any()) } doReturn mock<ViewModel>() }
         state = mapOf(Pair("Main", viewModelMock))
-        store = Store(reducerMock, PublishSubject.create(), state)
+        store = Store(reducerMock, PublishSubject.create(), mock(), state)
     }
 
     @Test
