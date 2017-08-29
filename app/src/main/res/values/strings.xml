@@ -9,4 +9,5 @@
     <string name="windSpeedLabel">Wind Speed</string>
     <string name="windSpeedValue">%dmph</string>
     <string name="windDirectionLabel">Wind Direction</string>
+    <string name="msw_logo">msw_logo</string>
 </resources>
