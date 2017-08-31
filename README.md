@@ -1,5 +1,3 @@
-### License
-
 This is a sample project for Redux based library for Android. It is inspired by Javascript implementation of Redux: https://github.com/reactjs/redux.
 
 ![Alt text](https://user-images.githubusercontent.com/5991481/28999668-2e161f5a-7a93-11e7-999d-373db2e93eb5.png "Redux Schema.")
@@ -15,4 +13,5 @@ Elements of the library:
 3. `Action` - simple object which contains type of action and state to be updated.
 4. `Presenter` - creates the actions and dispatches them in the `Store`. It interacts with the `View` receiving interactions and updating it based on current application `State`. This is the place where the layer below should be called to interact with IO devices such as database, network etc.
 
+### License
 MIT
