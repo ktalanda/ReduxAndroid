@@ -7,6 +7,7 @@ import io.reactivex.schedulers.Schedulers
 import pl.k2net.ktalanda.domain.SurfForecast
 import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartMapper
 import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartViewModel
+import pl.k2net.ktalanda.maroubrascanner.main.chart.ShowDetailsAction
 import pl.k2net.ktalanda.maroubrascanner.main.chart.UpdateChartDataAction
 import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
 import pl.k2net.ktalanda.maroubrascanner.main.details.SurfDetailsMapper
@@ -36,6 +37,7 @@ class MainPresenter(
                 .subscribe(Consumer {
                     store.dispatch(UpdateChartDataAction(it.map { chartMapper.mapSurfConditionToSurfOverviewViewModel(it) }))
                     store.dispatch(UpdateDetailsListAction(it))
+                    if (it.size >= 1) store.dispatch(ShowDetailsAction(it[1]))
                 })
     }
 
