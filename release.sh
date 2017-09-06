@@ -6,7 +6,7 @@ versionCode=$((oldVersionCode+1))
 git add .
 git stash
 
-sed -i .back "s/versionName \"[0-9]*.[0-9].[0-9]\"/versionName \"${versionName}\"/g" ./app/build.gradle
+sed -i .back "s/versionName \"[0-9]*.[0-9].[0-9](.\w+)?\"/versionName \"${versionName}\"/g" ./app/build.gradle
 rm ./app/build.gradle.back
 
 sed -i .back "s/versionCode [0-9]/versionCode ${versionCode}/g" ./app/build.gradle
