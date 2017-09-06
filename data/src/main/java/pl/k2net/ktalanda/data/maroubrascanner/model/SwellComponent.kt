@@ -1,4 +1,4 @@
-package pl.k2net.ktalanda.data.model
+package pl.k2net.ktalanda.data.maroubrascanner.model
 
 data class SwellComponent(
         val height: Double,

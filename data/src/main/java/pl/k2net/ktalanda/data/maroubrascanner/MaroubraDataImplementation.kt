@@ -3,7 +3,7 @@ package pl.k2net.ktalanda.data.maroubrascanner
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import pl.k2net.ktalanda.data.model.Forecast
+import pl.k2net.ktalanda.data.maroubrascanner.model.Forecast
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory

@@ -5,11 +5,11 @@ import io.reactivex.Observable
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import pl.k2net.ktalanda.data.model.Condition
-import pl.k2net.ktalanda.data.model.Forecast
-import pl.k2net.ktalanda.data.model.Swell
-import pl.k2net.ktalanda.data.model.SwellComponent
-import pl.k2net.ktalanda.data.model.Wind
+import pl.k2net.ktalanda.data.maroubrascanner.model.Condition
+import pl.k2net.ktalanda.data.maroubrascanner.model.Forecast
+import pl.k2net.ktalanda.data.maroubrascanner.model.Swell
+import pl.k2net.ktalanda.data.maroubrascanner.model.SwellComponent
+import pl.k2net.ktalanda.data.maroubrascanner.model.Wind
 import java.util.Date
 
 class SurfForecastTest {

@@ -2,7 +2,7 @@ package pl.k2net.ktalanda.domain
 
 import io.reactivex.Observable
 import pl.k2net.ktalanda.data.maroubrascanner.MaroubraData
-import pl.k2net.ktalanda.data.model.Forecast
+import pl.k2net.ktalanda.data.maroubrascanner.model.Forecast
 import java.util.Date
 
 class SurfForecast(private val maroubraData: MaroubraData) {
