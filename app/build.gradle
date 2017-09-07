@@ -45,8 +45,8 @@ android {
         applicationId "pl.k2net.ktalanda.maroubrascanner"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 8
-        versionName "1.2.1-alpha"
+        versionCode 9
+        versionName "1.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "MSW_API_KEY", mswApiKey
     }
