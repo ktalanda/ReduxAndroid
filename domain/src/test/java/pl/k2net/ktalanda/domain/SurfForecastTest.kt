@@ -26,8 +26,8 @@ class SurfForecastTest {
                             1.15,
                             1.8,
                             "ft",
-                            1,
-                            2,
+                            1.0,
+                            2.0,
                             mapOf(
                                     Pair("combined", SwellComponent(
                                             4.5,
@@ -81,8 +81,8 @@ class SurfForecastTest {
                             0.57,
                             0.89,
                             "ft",
-                            1,
-                            1,
+                            1.0,
+                            1.0,
                             mapOf(
                                     Pair("combined", SwellComponent(
                                             4.0,
