@@ -12,6 +12,6 @@ install:
   - echo y | android update sdk -u -a -t extra-android-m2repository
 
 script:
-  - ./gradlew clean assembleDebug check
+  - ./gradlew clean assembleDebug ktlint test
 
 sudo: false
