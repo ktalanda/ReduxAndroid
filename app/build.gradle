@@ -17,10 +17,10 @@ String getFromEnvOrLocalProperties(String key){
 def mswApiKey = getFromEnvOrLocalProperties("MSW_API_KEY")
 
 ext {
-    support_version = '26.0.1'
-    rxjava_version = '2.1.0'
-    rxkotlin_version = '2.0.1'
-    dagger_version = '2.10'
+    support_version = '26.1.0'
+    rxkotlin_version = '2.1.0'
+    rxandroid_version = '2.0.1'
+    dagger_version = '2.11'
     mpandroidchart_version = 'v3.0.2'
 
     constraintlayout_version = '1.0.2'
@@ -40,7 +40,7 @@ android {
         }
     }
     compileSdkVersion 26
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "pl.k2net.ktalanda.maroubrascanner"
         minSdkVersion 21
@@ -64,8 +64,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    implementation "io.reactivex.rxjava2:rxkotlin:$rxjava_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -74,9 +74,6 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$constraintlayout_version"
     implementation "com.github.PhilJay:MPAndroidChart:$mpandroidchart_version"
 
-    androidTestImplementation ("com.android.support.test.espresso:espresso-core:$espresso_version", {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     testImplementation "junit:junit:$junit_version"
     testImplementation "com.nhaarman:mockito-kotlin:$mockito_version"
 
