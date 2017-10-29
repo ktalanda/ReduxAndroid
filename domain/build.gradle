@@ -4,7 +4,7 @@ apply from: '../quality.gradle'
 
 ext {
     rxkotlin_version = '2.0.1'
-    rxjava_version = '2.1.1'
+    rxjava_version = '2.1.3'
 
     junit_version = '4.12'
     mockito_version = '1.5.0'

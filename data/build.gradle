@@ -1,11 +1,14 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
 apply from: '../quality.gradle'
 
 ext {
     retrofit_version = '2.3.0'
-    okhttp_version = '3.6.0'
-    rxjava_version = '2.1.1'
+    okhttp_version = '3.9.0'
+    rxjava_version = '2.1.6'
+
+    dagger_version = '2.12'
 
     junit_version = '4.12'
 }
@@ -17,6 +20,9 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
 
     testImplementation "junit:junit:$junit_version"
 }
