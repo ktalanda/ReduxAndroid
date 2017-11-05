@@ -12,6 +12,7 @@ class MaroubraDataImplementation : MaroubraData {
     override fun init(key: String, isDebug: Boolean) {
         DaggerDataComponent
                 .builder()
+                .dataModule(DataModule(key))
                 .build()
     }
 
