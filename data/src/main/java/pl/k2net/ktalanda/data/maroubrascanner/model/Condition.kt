@@ -5,7 +5,7 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class Condition(
-        @PrimaryKey
+        @PrimaryKey val id: Int,
         val pressure: Int,
         val temperature: Int,
         val weather: Int,

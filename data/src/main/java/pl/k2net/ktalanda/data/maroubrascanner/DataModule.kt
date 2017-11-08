@@ -12,11 +12,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class DataModule(val apiKey: String) {
+class DataModule(private val apiKey: String) {
 
-    @Provides fun provideApiKey() = apiKey
+    @Provides @Singleton fun provideApiKey() = apiKey
+
+    @Provides @Singleton fun provideContext() : Context = App()
 
     @Provides
+    @Singleton
     fun provideRetrofit(apiKey: String) : Retrofit {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -31,10 +34,6 @@ class DataModule(val apiKey: String) {
 
     @Provides
     @Singleton
-    fun provideContext() : Context = App()
-
-    @Provides
     fun provideDatabase(context: Context) : Database =
         Room.databaseBuilder(context, Database::class.java, "my-todo-db").allowMainThreadQueries().build()
-
 }
