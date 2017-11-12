@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.view_surf_details.view.windDirection
 import kotlinx.android.synthetic.main.view_surf_details.view.windSpeed
 import pl.k2net.ktalanda.maroubrascanner.App
 import pl.k2net.ktalanda.maroubrascanner.R
-import pl.k2net.ktalanda.maroubrascanner.main.chart.HourAxisValueFormatter
 import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -22,7 +21,6 @@ import javax.inject.Inject
 
 class MainActivity : Activity(), MainPresenter.ViewInterface {
     @Inject lateinit var presenter: MainPresenter
-    @Inject lateinit var valueFormatter: HourAxisValueFormatter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

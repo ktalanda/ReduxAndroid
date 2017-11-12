@@ -6,7 +6,7 @@ import pl.k2net.ktalanda.maroubrascanner.main.chart.SurfChart
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AppModule::class, NetworkModule::class))
+@Component(modules = arrayOf(PresentationModule::class, DomainModule::class))
 interface AppComponent {
     fun inject(app: App)
 

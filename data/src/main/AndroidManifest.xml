@@ -1,6 +1,4 @@
-<manifest package="pl.k2net.ktalanda.data.maroubrascanner"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
-        android:name=".App" />
+<manifest package="pl.k2net.ktalanda.data.maroubrascanner">
+    <application />
 
 </manifest>

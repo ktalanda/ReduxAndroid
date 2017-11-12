@@ -18,7 +18,7 @@ import java.util.Date
 import javax.inject.Singleton
 
 @Module
-class AppModule(val app: App) {
+class PresentationModule(private val app: App) {
     @Provides @Singleton fun provideApp() = app
 
     @Provides @Singleton fun provideStore(): Store {
