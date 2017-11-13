@@ -1,7 +1,5 @@
 package pl.k2net.ktalanda.data.maroubrascanner
 
-import android.arch.persistence.room.Room
-import android.content.Context
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -12,11 +10,9 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
-class DataModule(private val apiKey: String) {
+class NetworkModule(private val apiKey: String) {
 
     @Provides @Singleton fun provideApiKey() = apiKey
-
-    @Provides @Singleton fun provideContext() : Context = App()
 
     @Provides
     @Singleton
@@ -31,9 +27,4 @@ class DataModule(private val apiKey: String) {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
     }
-
-    @Provides
-    @Singleton
-    fun provideDatabase(context: Context) : Database =
-        Room.databaseBuilder(context, Database::class.java, "my-todo-db").allowMainThreadQueries().build()
 }

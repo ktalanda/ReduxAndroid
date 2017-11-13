@@ -48,4 +48,5 @@ dependencies {
     implementation "android.arch.persistence.room:rxjava2:$room_version"
 
     testImplementation "junit:junit:$junit_version"
+    implementation project(path: ':domain')
 }

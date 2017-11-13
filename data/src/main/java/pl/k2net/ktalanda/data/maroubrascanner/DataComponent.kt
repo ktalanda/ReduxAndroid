@@ -4,5 +4,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(DataModule::class))
-interface DataComponent
+@Component(modules = arrayOf(NetworkModule::class, DatabaseModule::class))
+interface DataComponent {
+    fun inject(data: DataImpl)
+}
