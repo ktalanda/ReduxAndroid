@@ -1,11 +1,6 @@
-package pl.k2net.ktalanda.data.maroubrascanner.model
+package pl.k2net.ktalanda.data.maroubrascanner.network.model
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
-
-@Entity
 data class Swell(
-        @PrimaryKey val id: Int,
         val absMinBreakingHeight: Double,
         val absMaxBreakingHeight: Double,
         val unit: String,

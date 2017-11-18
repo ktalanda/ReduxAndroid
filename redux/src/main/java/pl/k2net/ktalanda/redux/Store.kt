@@ -5,7 +5,7 @@ import io.reactivex.subjects.PublishSubject
 
 class Store(private val reducer: Reducer,
             private val subject: PublishSubject<String>,
-            val logger: Logger,
+            val logger: ReduxLogger,
             var state: Map<String, ViewModel>) {
 
     fun reduce(action: Action) {
@@ -25,7 +25,7 @@ class Store(private val reducer: Reducer,
         subject.onNext("update")
     }
 
-    fun subscribe(doOnUpdate: () -> Unit) : Disposable {
+    fun subscribe(doOnUpdate: () -> Unit): Disposable {
         logger.info("Redux Store", "Store update subscribed.")
         return subject.subscribe({ doOnUpdate() })
     }

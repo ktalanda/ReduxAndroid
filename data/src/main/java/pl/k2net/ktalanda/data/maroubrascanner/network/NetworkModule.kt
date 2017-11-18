@@ -1,4 +1,4 @@
-package pl.k2net.ktalanda.data.maroubrascanner
+package pl.k2net.ktalanda.data.maroubrascanner.network
 
 import dagger.Module
 import dagger.Provides
@@ -12,11 +12,13 @@ import javax.inject.Singleton
 @Module
 class NetworkModule(private val apiKey: String) {
 
-    @Provides @Singleton fun provideApiKey() = apiKey
+    @Provides
+    @Singleton
+    fun provideApiKey() = apiKey
 
     @Provides
     @Singleton
-    fun provideRetrofit(apiKey: String) : Retrofit {
+    fun provideRetrofit(apiKey: String): Retrofit {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val client: OkHttpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()

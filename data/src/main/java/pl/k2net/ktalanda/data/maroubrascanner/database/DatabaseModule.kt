@@ -1,4 +1,4 @@
-package pl.k2net.ktalanda.data.maroubrascanner
+package pl.k2net.ktalanda.data.maroubrascanner.database
 
 import android.arch.persistence.room.Room
 import android.content.Context
@@ -9,10 +9,12 @@ import javax.inject.Singleton
 @Module
 class DatabaseModule(private val context: Context) {
 
-    @Provides @Singleton fun provideContext() = context
+    @Provides
+    @Singleton
+    fun provideContext() = context
 
     @Provides
     @Singleton
-    fun provideDatabase(context: Context) : Database =
+    fun provideDatabase(context: Context): Database =
             Room.databaseBuilder(context, Database::class.java, "maroubrascanner-db").allowMainThreadQueries().build()
 }

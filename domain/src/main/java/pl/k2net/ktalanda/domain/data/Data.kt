@@ -4,5 +4,5 @@ import io.reactivex.Observable
 import pl.k2net.ktalanda.domain.SurfCondition
 
 interface Data {
-    fun getForecast() : Observable<SurfCondition>
+    fun getForecast(): Observable<SurfCondition>
 }

@@ -13,6 +13,7 @@ import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartViewModel
 import pl.k2net.ktalanda.maroubrascanner.main.chart.HourAxisValueFormatter
 import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
 import pl.k2net.ktalanda.maroubrascanner.main.details.SurfDetailsMapper
+import pl.k2net.ktalanda.redux.ReduxLogger
 import pl.k2net.ktalanda.redux.Store
 import java.util.Date
 import javax.inject.Singleton
@@ -21,11 +22,11 @@ import javax.inject.Singleton
 class PresentationModule(private val app: App) {
     @Provides @Singleton fun provideApp() = app
 
-    @Provides @Singleton fun provideStore(): Store {
+    @Provides @Singleton fun provideStore(logger: ReduxLogger): Store {
         return Store(
                 MaroubraReducer,
                 PublishSubject.create(),
-                AppLogger,
+                logger,
                 hashMapOf(
                         ChartViewModel::class.toString() to ChartViewModel(listOf()),
                         DetailsViewModel::class.toString() to DetailsViewModel(listOf()),

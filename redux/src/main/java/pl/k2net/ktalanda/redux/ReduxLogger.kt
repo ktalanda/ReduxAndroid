@@ -1,5 +1,5 @@
 package pl.k2net.ktalanda.redux
 
-interface Logger {
+interface ReduxLogger {
     fun info(title: String, message: String)
 }

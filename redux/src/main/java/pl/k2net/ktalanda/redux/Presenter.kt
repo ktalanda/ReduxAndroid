@@ -2,7 +2,7 @@ package pl.k2net.ktalanda.redux
 
 import io.reactivex.disposables.Disposable
 
-abstract class Presenter<V: Any>(val store: Store) {
+abstract class Presenter<V : Any>(val store: Store) {
     lateinit var view: V
     lateinit var disposable: Disposable
 

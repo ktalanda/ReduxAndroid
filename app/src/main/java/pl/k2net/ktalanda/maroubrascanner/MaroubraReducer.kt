@@ -10,7 +10,7 @@ import pl.k2net.ktalanda.redux.Reducer
 import pl.k2net.ktalanda.redux.ViewModel
 
 object MaroubraReducer : Reducer {
-    override fun reduce(viewModel: ViewModel, action: Action) : ViewModel {
+    override fun reduce(viewModel: ViewModel, action: Action): ViewModel {
         return when (action) {
             is UpdateChartDataAction -> {
                 ChartViewModel(action.updatedSwellData)

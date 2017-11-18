@@ -8,5 +8,7 @@ import javax.inject.Singleton
 
 @Module
 class DomainModule {
-    @Provides @Singleton fun provideSurfForecast(data: Data) : SurfForecast = SurfForecast(data)
+    @Provides
+    @Singleton
+    fun provideSurfForecast(data: Data): SurfForecast = SurfForecast(data)
 }

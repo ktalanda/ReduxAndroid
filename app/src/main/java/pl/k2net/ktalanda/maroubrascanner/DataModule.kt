@@ -9,5 +9,7 @@ import javax.inject.Singleton
 
 @Module
 class DataModule(private val context: Context) {
-    @Provides @Singleton fun provideData() : Data = DataImpl(context, BuildConfig.MSW_API_KEY)
+    @Provides
+    @Singleton
+    fun provideData(): Data = DataImpl(context, BuildConfig.MSW_API_KEY, AppLogger)
 }
