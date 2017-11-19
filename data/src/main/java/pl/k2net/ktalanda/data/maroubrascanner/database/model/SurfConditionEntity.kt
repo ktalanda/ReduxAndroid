@@ -7,8 +7,7 @@ import java.util.Date
 
 @Entity
 data class SurfConditionEntity(
-        @PrimaryKey val id: Int,
-        val timestamp: Long,
+        @PrimaryKey val timestamp: Long,
         val swellHeight: Double,
         val period: Int,
         val direction: String,

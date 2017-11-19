@@ -31,12 +31,15 @@ class DataImpl(context: Context, key: String, logger: Logger) : Data {
     override fun getForecast(): Observable<SurfCondition> =
             retrofit.create(Api::class.java)
                     .getMaroubraForecast()
+                    .map {
+                        database.dao().clear()
+                        it
+                    }
                     .flatMap { Observable.fromIterable(it) }
                     .buffer(4)
                     .map { it[0] }
                     .map {
                         SurfConditionEntity(
-                                0,
                                 it.localTimestamp,
                                 (it.swell.minBreakingHeight + it.swell.maxBreakingHeight) / 2,
                                 it.swell.components["combined"]!!.period,
@@ -46,7 +49,9 @@ class DataImpl(context: Context, key: String, logger: Logger) : Data {
                     }
                     .map {
                         logger.logInfo("Data", it.toString())
+                        database.dao().insertForecast(it)
                         it
                     }
                     .map { it.toDomain() }
+
 }
