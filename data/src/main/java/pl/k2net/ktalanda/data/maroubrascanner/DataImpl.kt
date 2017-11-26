@@ -4,7 +4,6 @@ import android.content.Context
 import io.reactivex.Observable
 import pl.k2net.ktalanda.data.maroubrascanner.database.Database
 import pl.k2net.ktalanda.data.maroubrascanner.database.DatabaseModule
-import pl.k2net.ktalanda.data.maroubrascanner.database.model.SurfConditionEntity
 import pl.k2net.ktalanda.data.maroubrascanner.network.Api
 import pl.k2net.ktalanda.data.maroubrascanner.network.NetworkModule
 import pl.k2net.ktalanda.domain.Logger
@@ -36,21 +35,9 @@ class DataImpl(context: Context, key: String, logger: Logger) : Data {
                             .getMaroubraForecast()
                             .doOnSuccess { database.dao().clear() }
                             .toObservable()
-                            .map {
-                                it.filterIndexed { index, _ -> index % 4 == 0 }
-                                        .map {
-                                            SurfConditionEntity(
-                                                    it.localTimestamp,
-                                                    (it.swell.minBreakingHeight + it.swell.maxBreakingHeight) / 2,
-                                                    it.swell.components["combined"]!!.period,
-                                                    it.swell.components["combined"]!!.compassDirection,
-                                                    it.wind.speed,
-                                                    it.wind.compassDirection)
-                                        }
-                            }
+                            .map(ApiToDbMapper::mapForecastList)
                             .doOnNext({ it.forEach { database.dao().insertForecast(it) } })
             ).map {
-                logger.logInfo("Data", it.toString())
                 it.map { it.toDomain() }
-            }.doOnError { logger.logInfo("Data", it.message!!) }
+            }
 }
