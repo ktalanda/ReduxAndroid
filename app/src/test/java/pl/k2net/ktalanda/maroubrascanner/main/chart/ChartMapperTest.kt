@@ -4,7 +4,7 @@ import com.nhaarman.mockito_kotlin.mock
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
-import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
+import pl.k2net.ktalanda.domain.SurfCondition
 import java.util.Date
 
 class ChartMapperTest internal constructor() {
@@ -18,7 +18,7 @@ class ChartMapperTest internal constructor() {
 
     @Test
     fun givenValidSurfCondition_whenMapSurfConditionToSwellViewModel_shouldReturnValidViewModel() {
-        val surfDetailsViewModel = DetailsViewModel.Element(
+        val input = SurfCondition(
                 Date(1502463600),
                 4.5,
                 10,
@@ -26,7 +26,7 @@ class ChartMapperTest internal constructor() {
                 5,
                 "SSE"
         )
-        val actual = chartMapper.mapSurfConditionToSurfOverviewViewModel(surfDetailsViewModel)
+        val actual = chartMapper.mapSurfConditionToChartViewModel(input)
         val expected = ChartViewModel.Element(
                 Date(1502463600),
                 4.5

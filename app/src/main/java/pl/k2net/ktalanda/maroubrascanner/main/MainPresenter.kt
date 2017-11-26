@@ -31,11 +31,11 @@ class MainPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext {
-                    val elements = it.map { surfDetailsMapper.mapSurfConditionToSurfDetailsViewModel(it) }
-                    store.dispatch(UpdateChartDataAction(elements.map {
-                        chartMapper.mapSurfConditionToSurfOverviewViewModel(it) }))
-                    store.dispatch(UpdateDetailsListAction(elements))
-                    if (elements.isNotEmpty()) store.dispatch(ShowDetailsAction(elements[1]))
+                    store.dispatch(UpdateChartDataAction(it.map {
+                        chartMapper.mapSurfConditionToChartViewModel(it) }))
+                    val surfDetails = it.map { surfDetailsMapper.mapSurfConditionToSurfDetailsViewModel(it) }
+                    store.dispatch(UpdateDetailsListAction(surfDetails))
+                    if (surfDetails.isNotEmpty()) store.dispatch(ShowDetailsAction(surfDetails[1]))
                 }
                 .subscribe({ }, { })
     }

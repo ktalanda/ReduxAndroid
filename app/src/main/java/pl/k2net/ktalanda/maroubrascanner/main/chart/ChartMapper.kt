@@ -3,7 +3,7 @@ package pl.k2net.ktalanda.maroubrascanner.main.chart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import pl.k2net.ktalanda.maroubrascanner.main.details.DetailsViewModel
+import pl.k2net.ktalanda.domain.SurfCondition
 import java.util.Date
 import javax.inject.Inject
 import javax.inject.Provider
@@ -14,9 +14,9 @@ class ChartMapper @Inject constructor(private val dataSetProvider: Provider<BarD
                                       private val dataProvider: Provider<BarData>,
                                       private val entryFactory: BarEntryFactory) {
 
-    fun mapSurfConditionToSurfOverviewViewModel(surfDetailsViewModel: DetailsViewModel.Element): ChartViewModel.Element {
-        return ChartViewModel.Element(surfDetailsViewModel.time,
-                surfDetailsViewModel.swellHeight)
+    fun mapSurfConditionToChartViewModel(surfCondition: SurfCondition): ChartViewModel.Element {
+        return ChartViewModel.Element(surfCondition.time,
+                surfCondition.swellHeight)
     }
 
     fun mapValuesToData(swellList: List<ChartViewModel.Element>): BarData {
