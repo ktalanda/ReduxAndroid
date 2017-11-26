@@ -28,30 +28,29 @@ class DataImpl(context: Context, key: String, logger: Logger) : Data {
                 .inject(this)
     }
 
-    override fun getForecast(): Observable<SurfCondition> =
-            retrofit.create(Api::class.java)
-                    .getMaroubraForecast()
-                    .map {
-                        database.dao().clear()
-                        it
-                    }
-                    .flatMap { Observable.fromIterable(it) }
-                    .buffer(4)
-                    .map { it[0] }
-                    .map {
-                        SurfConditionEntity(
-                                it.localTimestamp,
-                                (it.swell.minBreakingHeight + it.swell.maxBreakingHeight) / 2,
-                                it.swell.components["combined"]!!.period,
-                                it.swell.components["combined"]!!.compassDirection,
-                                it.wind.speed,
-                                it.wind.compassDirection)
-                    }
-                    .map {
-                        logger.logInfo("Data", it.toString())
-                        database.dao().insertForecast(it)
-                        it
-                    }
-                    .map { it.toDomain() }
-
+    override fun getForecast(): Observable<List<SurfCondition>> =
+            Observable.mergeDelayError(
+                    database.dao().getSurfCondition()
+                            .toObservable(),
+                    retrofit.create(Api::class.java)
+                            .getMaroubraForecast()
+                            .doOnSuccess { database.dao().clear() }
+                            .toObservable()
+                            .map {
+                                it.filterIndexed { index, _ -> index % 4 == 0 }
+                                        .map {
+                                            SurfConditionEntity(
+                                                    it.localTimestamp,
+                                                    (it.swell.minBreakingHeight + it.swell.maxBreakingHeight) / 2,
+                                                    it.swell.components["combined"]!!.period,
+                                                    it.swell.components["combined"]!!.compassDirection,
+                                                    it.wind.speed,
+                                                    it.wind.compassDirection)
+                                        }
+                            }
+                            .doOnNext({ it.forEach { database.dao().insertForecast(it) } })
+            ).map {
+                logger.logInfo("Data", it.toString())
+                it.map { it.toDomain() }
+            }.doOnError { logger.logInfo("Data", it.message!!) }
 }

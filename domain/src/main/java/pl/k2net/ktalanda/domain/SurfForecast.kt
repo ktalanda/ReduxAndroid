@@ -4,5 +4,5 @@ import io.reactivex.Observable
 import pl.k2net.ktalanda.domain.data.Data
 
 class SurfForecast(val data: Data) {
-    fun getForecast(): Observable<SurfCondition> = data.getForecast()
+    fun getForecast(): Observable<List<SurfCondition>> = data.getForecast()
 }

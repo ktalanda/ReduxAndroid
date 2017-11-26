@@ -2,7 +2,6 @@ package pl.k2net.ktalanda.maroubrascanner.main
 
 import com.github.mikephil.charting.data.BarData
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import pl.k2net.ktalanda.domain.SurfForecast
 import pl.k2net.ktalanda.maroubrascanner.main.chart.ChartMapper
@@ -31,14 +30,14 @@ class MainPresenter(
         surfForecast.getForecast()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map { surfDetailsMapper.mapSurfConditionToSurfDetailsViewModel(it) }
-                .collect({ mutableListOf<DetailsViewModel.Element>() },
-                        { list, element -> list.add(element) })
-                .subscribe(Consumer {
-                    store.dispatch(UpdateChartDataAction(it.map { chartMapper.mapSurfConditionToSurfOverviewViewModel(it) }))
-                    store.dispatch(UpdateDetailsListAction(it))
-                    if (it.size >= 1) store.dispatch(ShowDetailsAction(it[1]))
-                })
+                .doOnNext {
+                    val elements = it.map { surfDetailsMapper.mapSurfConditionToSurfDetailsViewModel(it) }
+                    store.dispatch(UpdateChartDataAction(elements.map {
+                        chartMapper.mapSurfConditionToSurfOverviewViewModel(it) }))
+                    store.dispatch(UpdateDetailsListAction(elements))
+                    if (elements.isNotEmpty()) store.dispatch(ShowDetailsAction(elements[1]))
+                }
+                .subscribe({ }, { })
     }
 
     interface ViewInterface {
