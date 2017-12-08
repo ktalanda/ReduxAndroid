@@ -6,7 +6,7 @@ Redux library can be found in the `redux` module. https://github.com/ktalanda/Re
 
 The library is intended to be used in Presentation layer of the application. Presenters shouldn't be talking to the IO devices such as Database or Network directly, but should use abstract interfaces to access data, so any change to the `State` will be accessible form any part of the app.
 
-## 1. Decription.
+## 1. Description.
 Library is based on unidirectional data flow. All the visual `State` of the application is stored in the `Store`. `State` can be modified only via `Action`s. `State` is an immutable object, so any time we make change to it we need to create new one by reducing it.
 
 ### 1.1. Elements of the library.
