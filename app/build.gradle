@@ -2,80 +2,28 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply from: '../quality.gradle'
-
-String getFromLocalProperties(String key){
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    return properties.getProperty(key)?:null
-}
-
-String getFromEnvOrLocalProperties(String key){
-    return System.getenv(key) == null ? getFromLocalProperties(key) : System.getenv(key)
-}
-
-def mswApiKey = getFromEnvOrLocalProperties("MSW_API_KEY")
-
-ext {
-    support_version = '27.0.1'
-    rxkotlin_version = '2.1.0'
-    rxandroid_version = '2.0.1'
-    dagger_version = '2.11'
-    mpandroidchart_version = 'v3.0.2'
-
-    constraintlayout_version = '1.0.2'
-
-    espresso_version = '2.2.2'
-    junit_version = '4.12'
-    mockito_version = '1.5.0'
-}
 
 android {
-    signingConfigs {
-        release {
-            keyAlias getFromEnvOrLocalProperties("KEY_ALIAS")
-            keyPassword getFromEnvOrLocalProperties("KEY_PASSWORD")
-            storeFile file(getFromEnvOrLocalProperties("STORE_FILE"))
-            storePassword getFromEnvOrLocalProperties("STORE_PASSWORD")
-        }
-    }
     compileSdkVersion 27
     buildToolsVersion '27.0.1'
     defaultConfig {
-        applicationId "pl.k2net.ktalanda.maroubrascanner"
+        applicationId "pl.k2net.ktalanda.redux.example.reduxandroid.example"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 9
-        versionName "1.2.1"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "MSW_API_KEY", mswApiKey
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
-    implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
-    implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation "com.google.dagger:dagger:$dagger_version"
-
-    implementation "com.android.support:support-v4:$support_version"
-    implementation "com.android.support.constraint:constraint-layout:$constraintlayout_version"
-    implementation "com.github.PhilJay:MPAndroidChart:$mpandroidchart_version"
-
-    testImplementation "junit:junit:$junit_version"
-    testImplementation "com.nhaarman:mockito-kotlin:$mockito_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:1.2.0"
 
     implementation project(path: ':redux')
-    implementation project(path: ':domain')
-    implementation project(path: ':data')
 }

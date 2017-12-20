@@ -3,14 +3,9 @@ apply plugin: 'kotlin'
 apply from: '../quality.gradle'
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:1.1.51"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:1.2.0"
     implementation "io.reactivex.rxjava2:rxkotlin:2.1.0"
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     testImplementation "junit:junit:4.12"
     testImplementation "com.nhaarman:mockito-kotlin:1.5.0"
 }
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
