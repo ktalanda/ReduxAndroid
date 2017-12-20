@@ -10,30 +10,37 @@ import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.Unbinder
 
-class MainActivity : Activity() {
+class MainActivity : Activity(), MainPresenter.ViewInterface {
 
     @BindView(R.id.todoInput) lateinit var todoInputView: EditText
     @BindView(R.id.todoList) lateinit var todoListView: ListView
 
     private lateinit var unbinder: Unbinder
 
-    private var todoList = listOf<String>()
+    private val presenter: MainPresenter = MainPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         unbinder = ButterKnife.bind(this)
+
+        presenter.bind(this)
     }
 
     override fun onDestroy() {
         unbinder.unbind()
+        presenter.unbind()
+
         super.onDestroy()
     }
 
     @OnClick(R.id.addTodo)
     fun addTodo() {
-        todoList += todoInputView.text.toString()
-        todoListView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, todoList)
+        presenter.addTodo(todoInputView.text.toString())
         todoInputView.text.clear()
+    }
+
+    override fun updateTodoList(todoList: List<String>) {
+        todoListView.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, todoList)
     }
 }
