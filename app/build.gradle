@@ -23,7 +23,10 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:1.2.0"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jre8:1.2.0'
+
+    implementation'com.jakewharton:butterknife:8.8.1'
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation project(path: ':redux')
 }
