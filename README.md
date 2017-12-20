@@ -1,10 +1,8 @@
-This is a sample project for Redux based library for Android. It is inspired by Javascript implementation of Redux: https://github.com/reactjs/redux.
+This library is heavily inspired by Javascript implementation of Redux: https://github.com/reactjs/redux.
 
 ![Alt text](https://user-images.githubusercontent.com/5991481/28999668-2e161f5a-7a93-11e7-999d-373db2e93eb5.png "Redux Schema.")
 
-Redux library can be found in the `redux` module. https://github.com/ktalanda/ReduxAndroid/tree/master/redux/src/main/java/pl/k2net/ktalanda/redux
-
-The library is intended to be used in Presentation layer of the application. Presenters shouldn't be talking to the IO devices such as Database or Network directly, but should use abstract interfaces to access data, so any change to the `State` will be accessible form any part of the app.
+The library is intended to be used in Presentation layer of the application. Presenters shouldn't be talking to the IO devices such as Database or Network directly, but should use abstract interfaces to access data. Any change to the `State` will be accessible form any part of the app.
 
 ## 1. Description.
 Library is based on unidirectional data flow. All the visual `State` of the application is stored in the `Store`. `State` can be modified only via `Action`s. `State` is an immutable object, so any time we make change to it we need to create new one by reducing it.
