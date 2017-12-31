@@ -29,7 +29,8 @@ https://github.com/ktalanda/ReduxAndroid/blob/master/app/src/main/java/pl/k2net/
 
 * Define `Store` as a `Singleton` somewhere in your application. Pass the `Reducer`, `Logger` and `State` via constructor. `State` is a simple `Map` where `key` has to be `ViewModel` class name, and value has to be the `ViewModel` itself. When creating the `State` object you are defining the default state of the application. In the sample app it is provided by dagger. https://github.com/ktalanda/ReduxAndroid/blob/master/app/src/main/java/pl/k2net/ktalanda/maroubrascanner/AppModule.kt#L24
 
-* For every `View` create a `Presenter` which has to extend `Presenter` class from `redux` library. `Store` singleton instance has to be passed to the `Presenter` via constructor. Every `Presenter` has to implement `update()` method, which is being called as a callback function on every `State` change in the `Store`. `update` function has to contain all bindings to the view. In sample app this binding has been done via `ViewInterface`s.
+* For every `View` create a `Presenter` which has to extend `Presenter` class from `redux` library. `Store` singleton instance has to be passed to the `Presenter` via constructor. It contains `addToUpdateList` method which allows to invoke list of actions on the `update` event. Each time `update` event arises it iterates over action list and clear invoked actions.
+
 https://github.com/ktalanda/ReduxAndroid/blob/master/app/src/main/java/pl/k2net/ktalanda/maroubrascanner/main/MainPresenter.kt
 
 ## License
