@@ -9,10 +9,13 @@ class MainPresenter: Presenter<MainPresenter.ViewInterface>(
                 MainViewModel::class.toString() to MainViewModel(listOf())
         ))
 ) {
-    override fun update() =
-        view.updateTodoList((store.state[MainViewModel::class.toString()] as MainViewModel).todoList)
 
-    fun addTodo(todo: String) = store.dispatch(AddTodoAction(todo))
+    fun addTodo(todo: String) {
+        addToUpdateList {
+            view.updateTodoList((store.state[MainViewModel::class.toString()] as MainViewModel).todoList)
+        }
+        store.dispatch(AddTodoAction(todo))
+    }
 
     interface ViewInterface {
         fun updateTodoList(todoList: List<String>)

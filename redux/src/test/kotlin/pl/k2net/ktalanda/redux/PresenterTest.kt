@@ -30,15 +30,46 @@ class PresenterTest {
 
     @Test
     fun WhenBind_ShouldInvokeUpdate() {
+        var hasInvoked = false
+        presenter.updateActionList = mutableListOf(
+                {
+                    hasInvoked = true
+                    return@mutableListOf
+                })
         presenter.bind("ViewInterface")
-        Assert.assertTrue(presenter.hasUpdateBeenInvoked)
+        Assert.assertTrue(hasInvoked)
     }
 
-    class PresenterTestImplementation(store: Store) : Presenter<String>(store) {
-        var hasUpdateBeenInvoked: Boolean = false
-
-        override fun update() {
-            hasUpdateBeenInvoked = true
-        }
+    @Test
+    fun GivenNotEmptyList_WhenUpdate_ShouldExecuteAllActionsInUpdateActionList() {
+        var counter = 0
+        presenter.updateActionList = mutableListOf(
+                {
+                    counter++
+                    return@mutableListOf
+                },
+                {
+                    counter++
+                    return@mutableListOf
+                }
+        )
+        presenter.update()
+        Assert.assertEquals(2, counter)
     }
+
+    @Test
+    fun WhenUpdate_ShouldEmptyUpdateActionList() {
+        presenter.updateActionList = mutableListOf({}, {})
+        presenter.update()
+        Assert.assertEquals(0, presenter.updateActionList.size)
+    }
+
+    @Test
+    fun WhenAddAction_ShouldAppendActionToTheActionList() {
+        presenter.updateActionList = mutableListOf({}, {})
+        presenter.addToUpdateList { }
+        Assert.assertEquals(3, presenter.updateActionList.size)
+    }
+
+    class PresenterTestImplementation(store: Store) : Presenter<String>(store)
 }

@@ -3,6 +3,8 @@ package pl.k2net.ktalanda.redux
 import io.reactivex.disposables.Disposable
 
 abstract class Presenter<V : Any>(val store: Store) {
+    internal var updateActionList: MutableList<() -> Unit> = mutableListOf()
+
     lateinit var view: V
     lateinit var disposable: Disposable
 
@@ -18,5 +20,10 @@ abstract class Presenter<V : Any>(val store: Store) {
         disposable.dispose()
     }
 
-    abstract fun update()
+    fun addToUpdateList(action: () -> Unit) = updateActionList.add(action)
+
+    internal fun update() {
+        for (action in updateActionList) action()
+        updateActionList = mutableListOf()
+    }
 }
